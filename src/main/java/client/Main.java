@@ -1,6 +1,8 @@
 package client;
 
+import usage.ManyToMany;
 import usage.OneToMany;
+import usage.OneToOne;
 
 public class Main {
 
@@ -9,8 +11,20 @@ public class Main {
         OneToMany.updateStudent();
     }
 
+    private static void oneToOneExample() {
+        OneToOne.createCustomerWithPassport();
+    }
+
+    private static void manyToManyExample() {
+        ManyToMany.createMoviesWithActors();
+        ManyToMany.updateActor();
+        ManyToMany.updateMovie();
+    }
+
     public static void main(String[] args) {
-        oneToManyExamples();
+        //oneToManyExamples();
+        //oneToOneExample();
+        manyToManyExample();
     }
 
 }

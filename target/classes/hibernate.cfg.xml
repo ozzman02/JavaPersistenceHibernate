@@ -23,6 +23,10 @@
 
         <mapping class="entity.Guide"/>
         <mapping class="entity.Student"/>
+        <mapping class="entity.Customer"/>
+        <mapping class="entity.Passport"/>
+        <mapping class="entity.Movie"/>
+        <mapping class="entity.Actor"/>
 
     </session-factory>
 
