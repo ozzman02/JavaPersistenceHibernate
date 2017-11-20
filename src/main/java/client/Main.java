@@ -1,5 +1,6 @@
 package client;
 
+import usage.EmployeeUsage;
 import usage.ManyToMany;
 import usage.OneToMany;
 import usage.OneToOne;
@@ -21,10 +22,15 @@ public class Main {
         ManyToMany.updateMovie();
     }
 
+    private static void mappingEnumsExample() {
+        EmployeeUsage.createEmployee();
+    }
+
     public static void main(String[] args) {
         //oneToManyExamples();
         //oneToOneExample();
-        manyToManyExample();
+        //manyToManyExample();
+        mappingEnumsExample();
     }
 
 }
