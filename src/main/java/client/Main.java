@@ -1,9 +1,6 @@
 package client;
 
-import usage.EmployeeUsage;
-import usage.ManyToMany;
-import usage.OneToMany;
-import usage.OneToOne;
+import usage.*;
 
 public class Main {
 
@@ -21,16 +18,26 @@ public class Main {
         ManyToMany.updateActor();
         ManyToMany.updateMovie();
     }
+    private static void mapCollectionsOfSimpleValueTypesExample() {
+        MapCollectionSimpleValueTypes.createFriendWithNicknamesAndAddress();
+        MapCollectionSimpleValueTypes.getFriend();
+    }
 
     private static void mappingEnumsExample() {
         EmployeeUsage.createEmployee();
     }
 
     public static void main(String[] args) {
+
+        /*
+            Clean the database before running all the methods
+         */
+        
         //oneToManyExamples();
         //oneToOneExample();
         //manyToManyExample();
-        mappingEnumsExample();
+        //mappingEnumsExample();
+        mapCollectionsOfSimpleValueTypesExample();
     }
 
 }

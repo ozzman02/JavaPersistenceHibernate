@@ -27,6 +27,8 @@
         <mapping class="entity.Passport"/>
         <mapping class="entity.Movie"/>
         <mapping class="entity.Actor"/>
+        <mapping class="entity.Employee"/>
+        <mapping class="entity.Friend"/>
 
     </session-factory>
 
