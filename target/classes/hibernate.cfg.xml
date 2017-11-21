@@ -29,6 +29,8 @@
         <mapping class="entity.Actor"/>
         <mapping class="entity.Employee"/>
         <mapping class="entity.Friend"/>
+        <mapping class="entity.Parent"/>
+        <mapping class="entity.Child"/>
 
     </session-factory>
 

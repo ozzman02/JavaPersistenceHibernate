@@ -18,13 +18,19 @@ public class Main {
         ManyToMany.updateActor();
         ManyToMany.updateMovie();
     }
+
+    private static void mappingEnumsExample() {
+        EmployeeUsage.createEmployee();
+    }
+
     private static void mapCollectionsOfSimpleValueTypesExample() {
         MapCollectionSimpleValueTypes.createFriendWithNicknamesAndAddress();
         MapCollectionSimpleValueTypes.getFriend();
     }
 
-    private static void mappingEnumsExample() {
-        EmployeeUsage.createEmployee();
+    private static void compositeKeyExample() {
+        //CompositeKey.createParentPrimaryKey();
+        CompositeKey.createParentWithChildren();
     }
 
     public static void main(String[] args) {
@@ -32,12 +38,13 @@ public class Main {
         /*
             Clean the database before running all the methods
          */
-        
+
         //oneToManyExamples();
         //oneToOneExample();
         //manyToManyExample();
         //mappingEnumsExample();
-        mapCollectionsOfSimpleValueTypesExample();
+        //mapCollectionsOfSimpleValueTypesExample();
+        compositeKeyExample();
     }
 
 }
