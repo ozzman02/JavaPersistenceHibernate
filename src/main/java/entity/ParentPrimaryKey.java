@@ -3,6 +3,7 @@ package entity;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 @Embeddable
 public class ParentPrimaryKey implements Serializable {
 

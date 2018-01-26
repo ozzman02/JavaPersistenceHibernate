@@ -4,31 +4,31 @@ import usage.*;
 
 public class Main {
 
-    private static void oneToManyExamples() {
+    static void oneToManyExamples() {
         OneToMany.loadGuideAndStudents();
         OneToMany.updateStudent();
     }
 
-    private static void oneToOneExample() {
+    static void oneToOneExample() {
         OneToOne.createCustomerWithPassport();
     }
 
-    private static void manyToManyExample() {
+    static void manyToManyExample() {
         ManyToMany.createMoviesWithActors();
         ManyToMany.updateActor();
         ManyToMany.updateMovie();
     }
 
-    private static void mappingEnumsExample() {
+    static void mappingEnumsExample() {
         EmployeeUsage.createEmployee();
     }
 
-    private static void mapCollectionsOfSimpleValueTypesExample() {
+    static void mapCollectionsOfSimpleValueTypesExample() {
         MapCollectionSimpleValueTypes.createFriendWithNicknamesAndAddress();
         MapCollectionSimpleValueTypes.getFriend();
     }
 
-    private static void compositeKeyExample() {
+    static void compositeKeyExample() {
         //CompositeKey.createParentPrimaryKey();
         CompositeKey.createParentWithChildren();
     }
