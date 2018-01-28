@@ -83,4 +83,9 @@ public class Guide {
         student.setGuide(this);
     }
 
+	@Override
+	public String toString() {
+		return "Guide [id=" + id + ", staffId=" + staffId + ", name=" + name + ", salary=" + salary + "]";
+	}
+    
 }
