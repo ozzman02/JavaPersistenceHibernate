@@ -42,6 +42,29 @@ public class OneToMany {
         }
     }
 	
+	public static void createStudent() {
+
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate-jpa");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction txn = em.getTransaction();
+
+        try {
+            txn.begin();
+            Student student = new Student("2014BE50789", "Bruce Lee");
+            em.persist(student);
+            txn.commit();
+        } catch (Exception e) {
+            if (txn != null) {
+                txn.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+    }
+	
 	public static void updateStudent() {
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate-jpa");
