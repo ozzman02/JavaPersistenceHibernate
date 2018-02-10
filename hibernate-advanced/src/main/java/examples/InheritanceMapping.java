@@ -8,12 +8,51 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import entity.Guide;
+import entity.Animal;
+import entity.Animal2;
+import entity.Animal3;
+import entity.Cat;
+import entity.Cat2;
+import entity.Cat3;
+import entity.Dog;
+import entity.Dog2;
+import entity.Dog3;
 
-public class QueryLanguage {
+public class InheritanceMapping {
+	
+	public static void singleTableStrategy() {
+		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate-jpa");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction txn = em.getTransaction();
+		
+		try {
+			txn.begin();
+			
+			Cat cat = new Cat();
+			cat.setName("Lucy");
+			
+			Dog dog = new Dog();
+			dog.setName("Oliver");
+			
+			em.persist(cat);
+			em.persist(dog);
+			
+			txn.commit();
+		} catch (Exception e) {
+			if (txn != null) {
+				txn.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
 	
 	@SuppressWarnings("unchecked")
-	public static void getGuides() {
+	public static void getAnimalsSingleTableStrategy() {
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate-jpa");
 		EntityManager em = emf.createEntityManager();
@@ -23,14 +62,16 @@ public class QueryLanguage {
 			txn.begin();
 			
 			/*
-			 * JPQL query: select guide from Guide as guide
+			 * Polymorphic Query
 			 */
-			Query query = em.createQuery("select guide from Guide as guide");
+			Query query = em.createQuery("select animal from Animal animal");
 			
-			List<Guide> guides = query.getResultList();
+			List<Animal> animals = query.getResultList();
 			
-			for (Guide guide : guides) {
-				System.out.println(guide);
+			System.out.println();
+			
+			for (Animal animal : animals) {
+				System.out.println(animal);
 			}
 			
 			txn.commit();
@@ -47,99 +88,7 @@ public class QueryLanguage {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static void getGuideNames() {
-		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate-jpa");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction txn = em.getTransaction();
-		
-		try {
-			txn.begin();
-			
-			Query query = em.createQuery("select guide.name from Guide guide");
-			
-			List<String> names = query.getResultList();
-			
-			for (String name : names) {
-				System.out.println(name);
-			}
-			
-			txn.commit();
-		} catch (Exception e) {
-			if (txn != null) {
-				txn.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static void filterGuidesBySalary() {
-		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate-jpa");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction txn = em.getTransaction();
-		
-		try {
-			txn.begin();
-			
-			Query query = em.createQuery("select guide from Guide guide where guide.salary = 1000");
-			
-			List<Guide> guides = query.getResultList();
-			
-			for (Guide guide : guides) {
-				System.out.println(guide);
-			}
-			
-			txn.commit();
-		} catch (Exception e) {
-			if (txn != null) {
-				txn.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static void guideReport() {
-		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate-jpa");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction txn = em.getTransaction();
-		
-		try {
-			txn.begin();
-			
-			Query query = em.createQuery("select guide.name, guide.salary from Guide guide");
-			
-			List<Object[]> resultList = query.getResultList();
-			
-			for (Object[] objects : resultList) {
-				System.out.println("Object[] {objects[0]: " + objects[0] + ", objects[1]: " + objects[1] + "}");
-			}
-			
-			txn.commit();
-		} catch (Exception e) {
-			if (txn != null) {
-				txn.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
-	}
-	
-	public static void dynamicQuery() {
+	public static void getDogsSingleTableStrategy() {
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate-jpa");
 		EntityManager em = emf.createEntityManager();
@@ -149,57 +98,83 @@ public class QueryLanguage {
 			txn.begin();
 			
 			/*
-			 * 	Simulating dynamic parameter with variable name
-			 * 
-			 *	String name = "Ian Lamb";
-			 *
-			 * 	Query query = em.createQuery("select guide from Guide guide where "
-			 	+ "guide.name = '" + name + "' ");
-			 * 	
+			 * Polymorphic Query
 			 */
+			Query query = em.createQuery("select dog from Dog dog");
 			
-			 
+			List<Dog> dogs = query.getResultList();
+			
+			System.out.println();
+			
+			for (Dog dog : dogs) {
+				System.out.println(dog);
+			}
+			
+			txn.commit();
+		} catch (Exception e) {
+			if (txn != null) {
+				txn.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+	
+	public static void joinedStrategy() {
+		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate-jpa");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction txn = em.getTransaction();
+		
+		try {
+			txn.begin();
+			
+			Cat2 cat = new Cat2();
+			cat.setName("Lucy");
+			
+			Dog2 dog = new Dog2();
+			dog.setName("Oliver");
+			
+			em.persist(cat);
+			em.persist(dog);
+			
+			txn.commit();
+		} catch (Exception e) {
+			if (txn != null) {
+				txn.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static void getAnimalsJoinedStrategy() {
+		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate-jpa");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction txn = em.getTransaction();
+		
+		try {
+			txn.begin();
+			
 			/*
-			 * It's better to use named parameter
+			 * Polymorphic Query
 			 */
+			Query query = em.createQuery("select animal2 from Animal2 animal2");
 			
-			Query query = em.createQuery("select guide from Guide guide where guide.name = :name");
+			List<Animal2> animals = query.getResultList();
 			
-			query.setParameter("name", "Ian Lamb");
+			System.out.println();
 			
-			Guide guide = (Guide) query.getSingleResult();
-			
-			System.out.println(guide);
-			
-			txn.commit();
-		} catch (Exception e) {
-			if (txn != null) {
-				txn.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static void usingWildCard() {
-		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate-jpa");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction txn = em.getTransaction();
-		
-		try {
-			txn.begin();
-			
-			Query query = em.createQuery("select guide from Guide guide where guide.name like 'M%'");
-			
-			List<Guide> guides = query.getResultList();
-			
-			for (Guide guide : guides) {
-				System.out.println(guide);
+			for (Animal2 animal2 : animals) {
+				System.out.println(animal2);
 			}
 			
 			txn.commit();
@@ -216,7 +191,7 @@ public class QueryLanguage {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static void nativeSQL() {
+	public static void getDogsJoinedStrategy() {
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate-jpa");
 		EntityManager em = emf.createEntityManager();
@@ -225,12 +200,17 @@ public class QueryLanguage {
 		try {
 			txn.begin();
 			
-			Query query = em.createNativeQuery("select * from guide", Guide.class);
+			/*
+			 * Polymorphic Query
+			 */
+			Query query = em.createQuery("select dog2 from Dog2 dog2");
 			
-			List<Guide> guides = query.getResultList();
+			List<Dog2> dogs = query.getResultList();
 			
-			for (Guide guide : guides) {
-				System.out.println(guide);
+			System.out.println();
+			
+			for (Dog2 dog2 : dogs) {
+				System.out.println(dog2);
 			}
 			
 			txn.commit();
@@ -246,11 +226,8 @@ public class QueryLanguage {
 		}
 	}
 	
-	/*
-	 * Query is read from the orm.xml file
-	 */
 	@SuppressWarnings("unchecked")
-	public static void namedQuery() {
+	public static void getCatsJoinedStrategy() {
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate-jpa");
 		EntityManager em = emf.createEntityManager();
@@ -259,12 +236,17 @@ public class QueryLanguage {
 		try {
 			txn.begin();
 			
-			List<Guide> guides = em.createNamedQuery("findByGuide")
-					.setParameter("name", "Mike Lawson")
-					.getResultList();
+			/*
+			 * Polymorphic Query
+			 */
+			Query query = em.createQuery("select cat2 from Cat2 cat2");
 			
-			for (Guide guide : guides) {
-				System.out.println(guide);
+			List<Cat2> cats = query.getResultList();
+			
+			System.out.println();
+			
+			for (Cat2 cat2 : cats) {
+				System.out.println(cat2);
 			}
 			
 			txn.commit();
@@ -280,7 +262,7 @@ public class QueryLanguage {
 		}
 	}
 	
-	public static void countFunction() {
+	public static void tablePerClassStrategy() {
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate-jpa");
 		EntityManager em = emf.createEntityManager();
@@ -289,11 +271,14 @@ public class QueryLanguage {
 		try {
 			txn.begin();
 			
-			Query query = em.createQuery("select count(guide) from Guide guide");
+			Cat3 cat = new Cat3();
+			cat.setName("Lucy");
 			
-			Long numOfGuides = (Long) query.getSingleResult();
+			Dog3 dog = new Dog3();
+			dog.setName("Oliver");
 			
-			System.out.println("[numOfGuides:" + numOfGuides + "]");
+			em.persist(cat);
+			em.persist(dog);
 			
 			txn.commit();
 		} catch (Exception e) {
@@ -308,7 +293,8 @@ public class QueryLanguage {
 		}
 	}
 	
-	public static void maxFunction() {
+	@SuppressWarnings("unchecked")
+	public static void getAnimalsTablePerClassStrategy() {
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate-jpa");
 		EntityManager em = emf.createEntityManager();
@@ -317,11 +303,90 @@ public class QueryLanguage {
 		try {
 			txn.begin();
 			
-			Query query = em.createQuery("select max(guide.salary) from Guide guide");
+			/*
+			 * Polymorphic Query
+			 */
+			Query query = em.createQuery("select animal3 from Animal3 animal3");
 			
-			Integer maximumSalary = (Integer) query.getSingleResult();
+			List<Animal3> animals = query.getResultList();
 			
-			System.out.println("[maximum salary:" + maximumSalary + "]");
+			System.out.println();
+			
+			for (Animal3 animal : animals) {
+				System.out.println(animal);
+			}
+			
+			txn.commit();
+		} catch (Exception e) {
+			if (txn != null) {
+				txn.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static void getDogsTablePerClassStrategy() {
+		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate-jpa");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction txn = em.getTransaction();
+		
+		try {
+			txn.begin();
+			
+			/*
+			 * Polymorphic Query
+			 */
+			Query query = em.createQuery("select dog3 from Dog3 dog3");
+			
+			List<Dog3> dogs = query.getResultList();
+			
+			System.out.println();
+			
+			for (Dog3 dog : dogs) {
+				System.out.println(dog);
+			}
+			
+			txn.commit();
+		} catch (Exception e) {
+			if (txn != null) {
+				txn.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static void getCatsTablePerClassStrategy() {
+		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate-jpa");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction txn = em.getTransaction();
+		
+		try {
+			txn.begin();
+			
+			/*
+			 * Polymorphic Query
+			 */
+			Query query = em.createQuery("select cat3 from Cat3 cat3");
+			
+			List<Cat3> cats = query.getResultList();
+			
+			System.out.println();
+			
+			for (Cat3 cat : cats) {
+				System.out.println(cat);
+			}
 			
 			txn.commit();
 		} catch (Exception e) {
