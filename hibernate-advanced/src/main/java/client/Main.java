@@ -4,6 +4,7 @@ import examples.InheritanceMapping;
 import examples.JoiningAssociations;
 import examples.OneToMany;
 import examples.QueryLanguage;
+import examples.SelectsProblem;
 
 public class Main {
 	
@@ -50,8 +51,13 @@ public class Main {
 		InheritanceMapping.getCatsTablePerClassStrategy();
 	}
 	
+	static void selectsProblem() {
+		//SelectsProblem.loadGuideAndStudents();
+		SelectsProblem.getAllStudents();
+	}
+	
 	public static void main(String[] args) {
-		inheritanceMapping();
+		selectsProblem();
 	}
 	
 }

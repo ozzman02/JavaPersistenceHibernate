@@ -24,7 +24,7 @@ public class Student {
      * Default fetch type: Eager. It can be changed to fetch = FetchType.LAZY
      * 
      */
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch=FetchType.LAZY)
     @JoinColumn(name = "guide_id")
     private Guide guide;
 
