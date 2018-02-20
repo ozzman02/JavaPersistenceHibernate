@@ -1,10 +1,14 @@
 package entity;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.BatchSize;
+
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@BatchSize(size = 2)
 public class Guide {
 
     @Id
@@ -27,7 +31,7 @@ public class Guide {
      *  @OneToMany(mappedBy = "guide", cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
      *   
      */
-    @OneToMany(mappedBy = "guide", cascade = {CascadeType.PERSIST})
+    @OneToMany(mappedBy = "guide", cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
     private Set<Student> students = new HashSet<Student>();
 
     public Guide() {}
