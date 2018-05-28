@@ -2,6 +2,7 @@ package client;
 
 import examples.InheritanceMapping;
 import examples.JoiningAssociations;
+import examples.MergingDetachedObjects;
 import examples.OneToMany;
 import examples.QueryLanguage;
 import examples.SelectsProblem;
@@ -56,8 +57,13 @@ public class Main {
 		SelectsProblem.getAllStudents();
 	}
 	
+	static void mergingDetachedObj() {
+		//MergingDetachedObjects.mergeDetachedObj();
+		MergingDetachedObjects.mergeDetachedObj2();
+	}
+	
 	public static void main(String[] args) {
-		selectsProblem();
+		mergingDetachedObj();
 	}
 	
 }

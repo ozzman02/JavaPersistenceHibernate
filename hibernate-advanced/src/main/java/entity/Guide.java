@@ -31,7 +31,10 @@ public class Guide {
      *  @OneToMany(mappedBy = "guide", cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
      *   
      */
-    @OneToMany(mappedBy = "guide", cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    
+    //@OneToMany(mappedBy = "guide", cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    //@OneToMany(mappedBy = "guide", cascade = {CascadeType.MERGE})
+    @OneToMany(mappedBy = "guide")
     private Set<Student> students = new HashSet<Student>();
 
     public Guide() {}
