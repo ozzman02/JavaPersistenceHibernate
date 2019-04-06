@@ -1,0 +1,1330 @@
+22:59:44,785 DEBUG SQL:109 - 
+    alter table Cat2 
+        drop 
+        foreign key FK_npw9ioo6q5bi03cvn918q2ui7
+22:59:44,802 DEBUG SQL:109 - 
+    alter table Dog2 
+        drop 
+        foreign key FK_ak5vm289udp13wo5xeeqixyfg
+22:59:44,804 DEBUG SQL:109 - 
+    alter table Student 
+        drop 
+        foreign key FK_kf6egxhj81a1pp6596ox4c0ul
+22:59:44,805 DEBUG SQL:109 - 
+    drop table if exists Animal
+22:59:44,849 DEBUG SQL:109 - 
+    drop table if exists Animal2
+22:59:44,870 DEBUG SQL:109 - 
+    drop table if exists Cat2
+22:59:44,900 DEBUG SQL:109 - 
+    drop table if exists Cat3
+22:59:44,935 DEBUG SQL:109 - 
+    drop table if exists Dog2
+22:59:44,958 DEBUG SQL:109 - 
+    drop table if exists Dog3
+22:59:44,985 DEBUG SQL:109 - 
+    drop table if exists Guide
+22:59:45,009 DEBUG SQL:109 - 
+    drop table if exists Student
+22:59:45,042 DEBUG SQL:109 - 
+    drop table if exists hibernate_sequences
+22:59:45,065 DEBUG SQL:109 - 
+    create table Animal (
+        DTYPE varchar(31) not null,
+        id bigint not null auto_increment,
+        name varchar(255),
+        primary key (id)
+    )
+22:59:45,560 DEBUG SQL:109 - 
+    create table Animal2 (
+        id bigint not null auto_increment,
+        name varchar(255) not null,
+        primary key (id)
+    )
+22:59:46,090 DEBUG SQL:109 - 
+    create table Cat2 (
+        id bigint not null,
+        primary key (id)
+    )
+22:59:46,729 DEBUG SQL:109 - 
+    create table Cat3 (
+        id bigint not null,
+        name varchar(255) not null,
+        primary key (id)
+    )
+22:59:47,368 DEBUG SQL:109 - 
+    create table Dog2 (
+        id bigint not null,
+        primary key (id)
+    )
+22:59:47,836 DEBUG SQL:109 - 
+    create table Dog3 (
+        id bigint not null,
+        name varchar(255) not null,
+        primary key (id)
+    )
+22:59:48,515 DEBUG SQL:109 - 
+    create table Guide (
+        id bigint not null auto_increment,
+        name varchar(255) not null,
+        salary integer not null,
+        staff_id varchar(255) not null,
+        primary key (id)
+    )
+22:59:49,190 DEBUG SQL:109 - 
+    create table Student (
+        id bigint not null auto_increment,
+        enrollmentId varchar(255) not null,
+        name varchar(255) not null,
+        guide_id bigint,
+        primary key (id)
+    )
+22:59:49,891 DEBUG SQL:109 - 
+    alter table Cat2 
+        add constraint FK_npw9ioo6q5bi03cvn918q2ui7 
+        foreign key (id) 
+        references Animal2 (id)
+22:59:51,794 DEBUG SQL:109 - 
+    alter table Dog2 
+        add constraint FK_ak5vm289udp13wo5xeeqixyfg 
+        foreign key (id) 
+        references Animal2 (id)
+22:59:54,393 DEBUG SQL:109 - 
+    alter table Student 
+        add constraint FK_kf6egxhj81a1pp6596ox4c0ul 
+        foreign key (guide_id) 
+        references Guide (id)
+22:59:56,592 DEBUG SQL:109 - 
+    create table hibernate_sequences (
+         sequence_name varchar(255),
+         sequence_next_hi_value integer 
+    )
+22:59:57,869 DEBUG SQL:109 - 
+    insert 
+    into
+        Guide
+        (name, salary, staff_id) 
+    values
+        (?, ?, ?)
+22:59:57,893 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [Mike Lawson]
+22:59:57,896 TRACE BasicBinder:81 - binding parameter [2] as [INTEGER] - [1000]
+22:59:57,897 TRACE BasicBinder:81 - binding parameter [3] as [VARCHAR] - [2000MO10789]
+22:59:57,912 DEBUG SQL:109 - 
+    insert 
+    into
+        Guide
+        (name, salary, staff_id) 
+    values
+        (?, ?, ?)
+22:59:57,912 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [Ian Lamb]
+22:59:57,913 TRACE BasicBinder:81 - binding parameter [2] as [INTEGER] - [2000]
+22:59:57,913 TRACE BasicBinder:81 - binding parameter [3] as [VARCHAR] - [2000IM10901]
+22:59:58,442 DEBUG SQL:109 - 
+    alter table Cat2 
+        drop 
+        foreign key FK_npw9ioo6q5bi03cvn918q2ui7
+22:59:58,794 DEBUG SQL:109 - 
+    alter table Dog2 
+        drop 
+        foreign key FK_ak5vm289udp13wo5xeeqixyfg
+22:59:59,248 DEBUG SQL:109 - 
+    alter table Student 
+        drop 
+        foreign key FK_kf6egxhj81a1pp6596ox4c0ul
+22:59:59,397 DEBUG SQL:109 - 
+    drop table if exists Animal
+22:59:59,832 DEBUG SQL:109 - 
+    drop table if exists Animal2
+23:00:01,309 DEBUG SQL:109 - 
+    drop table if exists Cat2
+23:00:02,569 DEBUG SQL:109 - 
+    drop table if exists Cat3
+23:00:03,259 DEBUG SQL:109 - 
+    drop table if exists Dog2
+23:00:03,749 DEBUG SQL:109 - 
+    drop table if exists Dog3
+23:00:05,407 DEBUG SQL:109 - 
+    drop table if exists Guide
+23:00:06,241 DEBUG SQL:109 - 
+    drop table if exists Student
+23:00:06,940 DEBUG SQL:109 - 
+    drop table if exists hibernate_sequences
+23:00:07,496 DEBUG SQL:109 - 
+    create table Animal (
+        DTYPE varchar(31) not null,
+        id bigint not null auto_increment,
+        name varchar(255),
+        primary key (id)
+    )
+23:00:08,267 DEBUG SQL:109 - 
+    create table Animal2 (
+        id bigint not null auto_increment,
+        name varchar(255) not null,
+        primary key (id)
+    )
+23:00:09,366 DEBUG SQL:109 - 
+    create table Cat2 (
+        id bigint not null,
+        primary key (id)
+    )
+23:00:10,239 DEBUG SQL:109 - 
+    create table Cat3 (
+        id bigint not null,
+        name varchar(255) not null,
+        primary key (id)
+    )
+23:00:11,031 DEBUG SQL:109 - 
+    create table Dog2 (
+        id bigint not null,
+        primary key (id)
+    )
+23:00:11,795 DEBUG SQL:109 - 
+    create table Dog3 (
+        id bigint not null,
+        name varchar(255) not null,
+        primary key (id)
+    )
+23:00:13,429 DEBUG SQL:109 - 
+    create table Guide (
+        id bigint not null auto_increment,
+        name varchar(255) not null,
+        salary integer not null,
+        staff_id varchar(255) not null,
+        primary key (id)
+    )
+23:00:14,535 DEBUG SQL:109 - 
+    create table Student (
+        id bigint not null auto_increment,
+        enrollmentId varchar(255) not null,
+        name varchar(255) not null,
+        guide_id bigint,
+        primary key (id)
+    )
+23:00:15,331 DEBUG SQL:109 - 
+    alter table Cat2 
+        add constraint FK_npw9ioo6q5bi03cvn918q2ui7 
+        foreign key (id) 
+        references Animal2 (id)
+23:00:16,800 DEBUG SQL:109 - 
+    alter table Dog2 
+        add constraint FK_ak5vm289udp13wo5xeeqixyfg 
+        foreign key (id) 
+        references Animal2 (id)
+23:00:18,557 DEBUG SQL:109 - 
+    alter table Student 
+        add constraint FK_kf6egxhj81a1pp6596ox4c0ul 
+        foreign key (guide_id) 
+        references Guide (id)
+23:00:20,590 DEBUG SQL:109 - 
+    create table hibernate_sequences (
+         sequence_name varchar(255),
+         sequence_next_hi_value integer 
+    )
+23:00:21,151 DEBUG SQL:109 - 
+    insert 
+    into
+        Student
+        (enrollmentId, guide_id, name) 
+    values
+        (?, ?, ?)
+23:00:21,152 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [2014BE50789]
+23:00:21,154 TRACE BasicBinder:69 - binding parameter [2] as [BIGINT] - [null]
+23:00:21,154 TRACE BasicBinder:81 - binding parameter [3] as [VARCHAR] - [Bruce Lee]
+23:00:21,399 DEBUG SQL:109 - 
+    alter table Cat2 
+        drop 
+        foreign key FK_npw9ioo6q5bi03cvn918q2ui7
+23:00:21,731 DEBUG SQL:109 - 
+    alter table Dog2 
+        drop 
+        foreign key FK_ak5vm289udp13wo5xeeqixyfg
+23:00:21,954 DEBUG SQL:109 - 
+    alter table Student 
+        drop 
+        foreign key FK_kf6egxhj81a1pp6596ox4c0ul
+23:00:22,305 DEBUG SQL:109 - 
+    drop table if exists Animal
+23:00:22,701 DEBUG SQL:109 - 
+    drop table if exists Animal2
+23:00:23,434 DEBUG SQL:109 - 
+    drop table if exists Cat2
+23:00:25,086 DEBUG SQL:109 - 
+    drop table if exists Cat3
+23:00:26,723 DEBUG SQL:109 - 
+    drop table if exists Dog2
+23:00:27,740 DEBUG SQL:109 - 
+    drop table if exists Dog3
+23:00:29,421 DEBUG SQL:109 - 
+    drop table if exists Guide
+23:00:30,286 DEBUG SQL:109 - 
+    drop table if exists Student
+23:00:30,914 DEBUG SQL:109 - 
+    drop table if exists hibernate_sequences
+23:00:32,553 DEBUG SQL:109 - 
+    create table Animal (
+        DTYPE varchar(31) not null,
+        id bigint not null auto_increment,
+        name varchar(255),
+        primary key (id)
+    )
+23:00:33,343 DEBUG SQL:109 - 
+    create table Animal2 (
+        id bigint not null auto_increment,
+        name varchar(255) not null,
+        primary key (id)
+    )
+23:00:34,295 DEBUG SQL:109 - 
+    create table Cat2 (
+        id bigint not null,
+        primary key (id)
+    )
+23:00:35,010 DEBUG SQL:109 - 
+    create table Cat3 (
+        id bigint not null,
+        name varchar(255) not null,
+        primary key (id)
+    )
+23:00:36,079 DEBUG SQL:109 - 
+    create table Dog2 (
+        id bigint not null,
+        primary key (id)
+    )
+23:00:37,798 DEBUG SQL:109 - 
+    create table Dog3 (
+        id bigint not null,
+        name varchar(255) not null,
+        primary key (id)
+    )
+23:00:38,413 DEBUG SQL:109 - 
+    create table Guide (
+        id bigint not null auto_increment,
+        name varchar(255) not null,
+        salary integer not null,
+        staff_id varchar(255) not null,
+        primary key (id)
+    )
+23:00:39,134 DEBUG SQL:109 - 
+    create table Student (
+        id bigint not null auto_increment,
+        enrollmentId varchar(255) not null,
+        name varchar(255) not null,
+        guide_id bigint,
+        primary key (id)
+    )
+23:00:40,114 DEBUG SQL:109 - 
+    alter table Cat2 
+        add constraint FK_npw9ioo6q5bi03cvn918q2ui7 
+        foreign key (id) 
+        references Animal2 (id)
+23:00:42,826 DEBUG SQL:109 - 
+    alter table Dog2 
+        add constraint FK_ak5vm289udp13wo5xeeqixyfg 
+        foreign key (id) 
+        references Animal2 (id)
+23:00:44,780 DEBUG SQL:109 - 
+    alter table Student 
+        add constraint FK_kf6egxhj81a1pp6596ox4c0ul 
+        foreign key (guide_id) 
+        references Guide (id)
+23:00:46,784 DEBUG SQL:109 - 
+    create table hibernate_sequences (
+         sequence_name varchar(255),
+         sequence_next_hi_value integer 
+    )
+23:00:47,569 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_0_,
+        guide0_.name as name2_7_0_,
+        guide0_.salary as salary3_7_0_,
+        guide0_.staff_id as staff_id4_7_0_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.id=?
+23:00:47,569 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:00:47,576 DEBUG SQL:109 - 
+    select
+        student0_.id as id1_8_0_,
+        student0_.enrollmentId as enrollme2_8_0_,
+        student0_.guide_id as guide_id4_8_0_,
+        student0_.name as name3_8_0_ 
+    from
+        Student student0_ 
+    where
+        student0_.id=?
+23:00:47,576 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [1]
+23:00:47,578 DEBUG SQL:109 - 
+    select
+        student0_.id as id1_8_0_,
+        student0_.enrollmentId as enrollme2_8_0_,
+        student0_.guide_id as guide_id4_8_0_,
+        student0_.name as name3_8_0_ 
+    from
+        Student student0_ 
+    where
+        student0_.id=?
+23:00:47,578 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:00:47,761 DEBUG SQL:109 - 
+    alter table Cat2 
+        drop 
+        foreign key FK_npw9ioo6q5bi03cvn918q2ui7
+23:00:48,218 DEBUG SQL:109 - 
+    alter table Dog2 
+        drop 
+        foreign key FK_ak5vm289udp13wo5xeeqixyfg
+23:00:48,469 DEBUG SQL:109 - 
+    alter table Student 
+        drop 
+        foreign key FK_kf6egxhj81a1pp6596ox4c0ul
+23:00:48,767 DEBUG SQL:109 - 
+    drop table if exists Animal
+23:00:49,237 DEBUG SQL:109 - 
+    drop table if exists Animal2
+23:00:49,575 DEBUG SQL:109 - 
+    drop table if exists Cat2
+23:00:50,130 DEBUG SQL:109 - 
+    drop table if exists Cat3
+23:00:50,509 DEBUG SQL:109 - 
+    drop table if exists Dog2
+23:00:51,331 DEBUG SQL:109 - 
+    drop table if exists Dog3
+23:00:52,626 DEBUG SQL:109 - 
+    drop table if exists Guide
+23:00:53,576 DEBUG SQL:109 - 
+    drop table if exists Student
+23:00:54,541 DEBUG SQL:109 - 
+    drop table if exists hibernate_sequences
+23:00:55,672 DEBUG SQL:109 - 
+    create table Animal (
+        DTYPE varchar(31) not null,
+        id bigint not null auto_increment,
+        name varchar(255),
+        primary key (id)
+    )
+23:00:56,676 DEBUG SQL:109 - 
+    create table Animal2 (
+        id bigint not null auto_increment,
+        name varchar(255) not null,
+        primary key (id)
+    )
+23:00:57,662 DEBUG SQL:109 - 
+    create table Cat2 (
+        id bigint not null,
+        primary key (id)
+    )
+23:00:58,540 DEBUG SQL:109 - 
+    create table Cat3 (
+        id bigint not null,
+        name varchar(255) not null,
+        primary key (id)
+    )
+23:00:59,402 DEBUG SQL:109 - 
+    create table Dog2 (
+        id bigint not null,
+        primary key (id)
+    )
+23:01:00,229 DEBUG SQL:109 - 
+    create table Dog3 (
+        id bigint not null,
+        name varchar(255) not null,
+        primary key (id)
+    )
+23:01:01,113 DEBUG SQL:109 - 
+    create table Guide (
+        id bigint not null auto_increment,
+        name varchar(255) not null,
+        salary integer not null,
+        staff_id varchar(255) not null,
+        primary key (id)
+    )
+23:01:02,069 DEBUG SQL:109 - 
+    create table Student (
+        id bigint not null auto_increment,
+        enrollmentId varchar(255) not null,
+        name varchar(255) not null,
+        guide_id bigint,
+        primary key (id)
+    )
+23:01:02,894 DEBUG SQL:109 - 
+    alter table Cat2 
+        add constraint FK_npw9ioo6q5bi03cvn918q2ui7 
+        foreign key (id) 
+        references Animal2 (id)
+23:01:05,847 DEBUG SQL:109 - 
+    alter table Dog2 
+        add constraint FK_ak5vm289udp13wo5xeeqixyfg 
+        foreign key (id) 
+        references Animal2 (id)
+23:01:09,100 DEBUG SQL:109 - 
+    alter table Student 
+        add constraint FK_kf6egxhj81a1pp6596ox4c0ul 
+        foreign key (guide_id) 
+        references Guide (id)
+23:01:11,343 DEBUG SQL:109 - 
+    create table hibernate_sequences (
+         sequence_name varchar(255),
+         sequence_next_hi_value integer 
+    )
+23:01:12,506 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_0_,
+        guide0_.name as name2_7_0_,
+        guide0_.salary as salary3_7_0_,
+        guide0_.staff_id as staff_id4_7_0_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.id=?
+23:01:12,507 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:01:12,666 DEBUG SQL:109 - 
+    alter table Cat2 
+        drop 
+        foreign key FK_npw9ioo6q5bi03cvn918q2ui7
+23:01:13,060 DEBUG SQL:109 - 
+    alter table Dog2 
+        drop 
+        foreign key FK_ak5vm289udp13wo5xeeqixyfg
+23:01:13,280 DEBUG SQL:109 - 
+    alter table Student 
+        drop 
+        foreign key FK_kf6egxhj81a1pp6596ox4c0ul
+23:01:13,745 DEBUG SQL:109 - 
+    drop table if exists Animal
+23:01:14,559 DEBUG SQL:109 - 
+    drop table if exists Animal2
+23:01:15,290 DEBUG SQL:109 - 
+    drop table if exists Cat2
+23:01:15,859 DEBUG SQL:109 - 
+    drop table if exists Cat3
+23:01:16,545 DEBUG SQL:109 - 
+    drop table if exists Dog2
+23:01:17,254 DEBUG SQL:109 - 
+    drop table if exists Dog3
+23:01:18,392 DEBUG SQL:109 - 
+    drop table if exists Guide
+23:01:19,284 DEBUG SQL:109 - 
+    drop table if exists Student
+23:01:20,373 DEBUG SQL:109 - 
+    drop table if exists hibernate_sequences
+23:01:22,087 DEBUG SQL:109 - 
+    create table Animal (
+        DTYPE varchar(31) not null,
+        id bigint not null auto_increment,
+        name varchar(255),
+        primary key (id)
+    )
+23:01:23,091 DEBUG SQL:109 - 
+    create table Animal2 (
+        id bigint not null auto_increment,
+        name varchar(255) not null,
+        primary key (id)
+    )
+23:01:23,658 DEBUG SQL:109 - 
+    create table Cat2 (
+        id bigint not null,
+        primary key (id)
+    )
+23:01:24,375 DEBUG SQL:109 - 
+    create table Cat3 (
+        id bigint not null,
+        name varchar(255) not null,
+        primary key (id)
+    )
+23:01:24,944 DEBUG SQL:109 - 
+    create table Dog2 (
+        id bigint not null,
+        primary key (id)
+    )
+23:01:25,596 DEBUG SQL:109 - 
+    create table Dog3 (
+        id bigint not null,
+        name varchar(255) not null,
+        primary key (id)
+    )
+23:01:26,428 DEBUG SQL:109 - 
+    create table Guide (
+        id bigint not null auto_increment,
+        name varchar(255) not null,
+        salary integer not null,
+        staff_id varchar(255) not null,
+        primary key (id)
+    )
+23:01:27,212 DEBUG SQL:109 - 
+    create table Student (
+        id bigint not null auto_increment,
+        enrollmentId varchar(255) not null,
+        name varchar(255) not null,
+        guide_id bigint,
+        primary key (id)
+    )
+23:01:28,287 DEBUG SQL:109 - 
+    alter table Cat2 
+        add constraint FK_npw9ioo6q5bi03cvn918q2ui7 
+        foreign key (id) 
+        references Animal2 (id)
+23:01:32,969 DEBUG SQL:109 - 
+    alter table Dog2 
+        add constraint FK_ak5vm289udp13wo5xeeqixyfg 
+        foreign key (id) 
+        references Animal2 (id)
+23:01:35,646 DEBUG SQL:109 - 
+    alter table Student 
+        add constraint FK_kf6egxhj81a1pp6596ox4c0ul 
+        foreign key (guide_id) 
+        references Guide (id)
+23:01:37,828 DEBUG SQL:109 - 
+    create table hibernate_sequences (
+         sequence_name varchar(255),
+         sequence_next_hi_value integer 
+    )
+23:01:38,726 DEBUG SQL:109 - 
+    select
+        student0_.id as id1_8_0_,
+        student0_.enrollmentId as enrollme2_8_0_,
+        student0_.guide_id as guide_id4_8_0_,
+        student0_.name as name3_8_0_ 
+    from
+        Student student0_ 
+    where
+        student0_.id=?
+23:01:38,727 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:01:38,841 DEBUG SQL:109 - 
+    alter table Cat2 
+        drop 
+        foreign key FK_npw9ioo6q5bi03cvn918q2ui7
+23:01:39,285 DEBUG SQL:109 - 
+    alter table Dog2 
+        drop 
+        foreign key FK_ak5vm289udp13wo5xeeqixyfg
+23:01:39,417 DEBUG SQL:109 - 
+    alter table Student 
+        drop 
+        foreign key FK_kf6egxhj81a1pp6596ox4c0ul
+23:01:39,547 DEBUG SQL:109 - 
+    drop table if exists Animal
+23:01:39,912 DEBUG SQL:109 - 
+    drop table if exists Animal2
+23:01:40,393 DEBUG SQL:109 - 
+    drop table if exists Cat2
+23:01:40,770 DEBUG SQL:109 - 
+    drop table if exists Cat3
+23:01:41,314 DEBUG SQL:109 - 
+    drop table if exists Dog2
+23:01:42,003 DEBUG SQL:109 - 
+    drop table if exists Dog3
+23:01:42,984 DEBUG SQL:109 - 
+    drop table if exists Guide
+23:01:43,798 DEBUG SQL:109 - 
+    drop table if exists Student
+23:01:45,148 DEBUG SQL:109 - 
+    drop table if exists hibernate_sequences
+23:01:45,874 DEBUG SQL:109 - 
+    create table Animal (
+        DTYPE varchar(31) not null,
+        id bigint not null auto_increment,
+        name varchar(255),
+        primary key (id)
+    )
+23:01:46,873 DEBUG SQL:109 - 
+    create table Animal2 (
+        id bigint not null auto_increment,
+        name varchar(255) not null,
+        primary key (id)
+    )
+23:01:48,689 DEBUG SQL:109 - 
+    create table Cat2 (
+        id bigint not null,
+        primary key (id)
+    )
+23:01:49,373 DEBUG SQL:109 - 
+    create table Cat3 (
+        id bigint not null,
+        name varchar(255) not null,
+        primary key (id)
+    )
+23:01:50,057 DEBUG SQL:109 - 
+    create table Dog2 (
+        id bigint not null,
+        primary key (id)
+    )
+23:01:50,548 DEBUG SQL:109 - 
+    create table Dog3 (
+        id bigint not null,
+        name varchar(255) not null,
+        primary key (id)
+    )
+23:01:51,426 DEBUG SQL:109 - 
+    create table Guide (
+        id bigint not null auto_increment,
+        name varchar(255) not null,
+        salary integer not null,
+        staff_id varchar(255) not null,
+        primary key (id)
+    )
+23:01:52,496 DEBUG SQL:109 - 
+    create table Student (
+        id bigint not null auto_increment,
+        enrollmentId varchar(255) not null,
+        name varchar(255) not null,
+        guide_id bigint,
+        primary key (id)
+    )
+23:01:53,586 DEBUG SQL:109 - 
+    alter table Cat2 
+        add constraint FK_npw9ioo6q5bi03cvn918q2ui7 
+        foreign key (id) 
+        references Animal2 (id)
+23:01:57,230 DEBUG SQL:109 - 
+    alter table Dog2 
+        add constraint FK_ak5vm289udp13wo5xeeqixyfg 
+        foreign key (id) 
+        references Animal2 (id)
+23:01:59,794 DEBUG SQL:109 - 
+    alter table Student 
+        add constraint FK_kf6egxhj81a1pp6596ox4c0ul 
+        foreign key (guide_id) 
+        references Guide (id)
+23:02:03,783 DEBUG SQL:109 - 
+    create table hibernate_sequences (
+         sequence_name varchar(255),
+         sequence_next_hi_value integer 
+    )
+23:02:04,853 DEBUG SQL:109 - 
+    select
+        student0_.id as id1_8_0_,
+        student0_.enrollmentId as enrollme2_8_0_,
+        student0_.guide_id as guide_id4_8_0_,
+        student0_.name as name3_8_0_ 
+    from
+        Student student0_ 
+    where
+        student0_.id=?
+23:02:04,854 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:02:04,857 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_0_,
+        guide0_.name as name2_7_0_,
+        guide0_.salary as salary3_7_0_,
+        guide0_.staff_id as staff_id4_7_0_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.id=?
+23:02:04,858 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:08:13,872 DEBUG SQL:109 - 
+    insert 
+    into
+        Guide
+        (name, salary, staff_id) 
+    values
+        (?, ?, ?)
+23:08:13,879 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [Mike Lawson]
+23:08:13,881 TRACE BasicBinder:81 - binding parameter [2] as [INTEGER] - [1000]
+23:08:13,881 TRACE BasicBinder:81 - binding parameter [3] as [VARCHAR] - [2000MO10789]
+23:08:13,933 DEBUG SQL:109 - 
+    insert 
+    into
+        Guide
+        (name, salary, staff_id) 
+    values
+        (?, ?, ?)
+23:08:13,934 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [Ian Lamb]
+23:08:13,934 TRACE BasicBinder:81 - binding parameter [2] as [INTEGER] - [2000]
+23:08:13,935 TRACE BasicBinder:81 - binding parameter [3] as [VARCHAR] - [2000IM10901]
+23:08:14,490 DEBUG SQL:109 - 
+    insert 
+    into
+        Student
+        (enrollmentId, guide_id, name) 
+    values
+        (?, ?, ?)
+23:08:14,491 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [2014BE50789]
+23:08:14,492 TRACE BasicBinder:69 - binding parameter [2] as [BIGINT] - [null]
+23:08:14,492 TRACE BasicBinder:81 - binding parameter [3] as [VARCHAR] - [Bruce Lee]
+23:08:15,021 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_0_,
+        guide0_.name as name2_7_0_,
+        guide0_.salary as salary3_7_0_,
+        guide0_.staff_id as staff_id4_7_0_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.id=?
+23:08:15,022 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:08:15,032 DEBUG SQL:109 - 
+    select
+        student0_.id as id1_8_0_,
+        student0_.enrollmentId as enrollme2_8_0_,
+        student0_.guide_id as guide_id4_8_0_,
+        student0_.name as name3_8_0_ 
+    from
+        Student student0_ 
+    where
+        student0_.id=?
+23:08:15,033 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [1]
+23:08:15,037 DEBUG SQL:109 - 
+    select
+        student0_.id as id1_8_0_,
+        student0_.enrollmentId as enrollme2_8_0_,
+        student0_.guide_id as guide_id4_8_0_,
+        student0_.name as name3_8_0_ 
+    from
+        Student student0_ 
+    where
+        student0_.id=?
+23:08:15,037 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:08:15,042 DEBUG SQL:109 - 
+    select
+        students0_.guide_id as guide_id4_7_0_,
+        students0_.id as id1_8_0_,
+        students0_.id as id1_8_1_,
+        students0_.enrollmentId as enrollme2_8_1_,
+        students0_.guide_id as guide_id4_8_1_,
+        students0_.name as name3_8_1_ 
+    from
+        Student students0_ 
+    where
+        students0_.guide_id=?
+23:08:15,043 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:08:15,064 DEBUG SQL:109 - 
+    update
+        Student 
+    set
+        enrollmentId=?,
+        guide_id=?,
+        name=? 
+    where
+        id=?
+23:08:15,064 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [2014JT50123]
+23:08:15,064 TRACE BasicBinder:81 - binding parameter [2] as [BIGINT] - [2]
+23:08:15,065 TRACE BasicBinder:81 - binding parameter [3] as [VARCHAR] - [John Smith]
+23:08:15,065 TRACE BasicBinder:81 - binding parameter [4] as [BIGINT] - [2]
+23:08:15,532 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_0_,
+        guide0_.name as name2_7_0_,
+        guide0_.salary as salary3_7_0_,
+        guide0_.staff_id as staff_id4_7_0_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.id=?
+23:08:15,532 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:08:15,848 DEBUG SQL:109 - 
+    select
+        student0_.id as id1_8_0_,
+        student0_.enrollmentId as enrollme2_8_0_,
+        student0_.guide_id as guide_id4_8_0_,
+        student0_.name as name3_8_0_ 
+    from
+        Student student0_ 
+    where
+        student0_.id=?
+23:08:15,848 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:08:16,133 DEBUG SQL:109 - 
+    select
+        student0_.id as id1_8_0_,
+        student0_.enrollmentId as enrollme2_8_0_,
+        student0_.guide_id as guide_id4_8_0_,
+        student0_.name as name3_8_0_ 
+    from
+        Student student0_ 
+    where
+        student0_.id=?
+23:08:16,133 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:08:16,135 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_0_,
+        guide0_.name as name2_7_0_,
+        guide0_.salary as salary3_7_0_,
+        guide0_.staff_id as staff_id4_7_0_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.id=?
+23:08:16,136 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:08:16,138 DEBUG SQL:109 - 
+    select
+        students0_.guide_id as guide_id4_7_0_,
+        students0_.id as id1_8_0_,
+        students0_.id as id1_8_1_,
+        students0_.enrollmentId as enrollme2_8_1_,
+        students0_.guide_id as guide_id4_8_1_,
+        students0_.name as name3_8_1_ 
+    from
+        Student students0_ 
+    where
+        students0_.guide_id=?
+23:08:16,138 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:08:45,648 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_,
+        guide0_.name as name2_7_,
+        guide0_.salary as salary3_7_,
+        guide0_.staff_id as staff_id4_7_ 
+    from
+        Guide guide0_
+23:08:46,143 DEBUG SQL:109 - 
+    select
+        guide0_.name as col_0_0_ 
+    from
+        Guide guide0_
+23:08:46,500 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_,
+        guide0_.name as name2_7_,
+        guide0_.salary as salary3_7_,
+        guide0_.staff_id as staff_id4_7_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.salary=1000
+23:08:46,871 DEBUG SQL:109 - 
+    select
+        guide0_.name as col_0_0_,
+        guide0_.salary as col_1_0_ 
+    from
+        Guide guide0_
+23:08:47,195 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_,
+        guide0_.name as name2_7_,
+        guide0_.salary as salary3_7_,
+        guide0_.staff_id as staff_id4_7_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.name=?
+23:08:47,198 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [Ian Lamb]
+23:08:47,495 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_,
+        guide0_.name as name2_7_,
+        guide0_.salary as salary3_7_,
+        guide0_.staff_id as staff_id4_7_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.name like 'M%'
+23:08:47,842 DEBUG SQL:109 - 
+    select
+        * 
+    from
+        guide
+23:08:48,126 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_,
+        guide0_.name as name2_7_,
+        guide0_.salary as salary3_7_,
+        guide0_.staff_id as staff_id4_7_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.name=?
+23:08:48,126 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [Mike Lawson]
+23:08:48,414 DEBUG SQL:109 - 
+    select
+        count(guide0_.id) as col_0_0_ 
+    from
+        Guide guide0_
+23:08:48,724 DEBUG SQL:109 - 
+    select
+        max(guide0_.salary) as col_0_0_ 
+    from
+        Guide guide0_
+23:10:50,021 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_,
+        guide0_.name as name2_7_,
+        guide0_.salary as salary3_7_,
+        guide0_.staff_id as staff_id4_7_ 
+    from
+        Guide guide0_
+23:10:50,510 DEBUG SQL:109 - 
+    select
+        guide0_.name as col_0_0_ 
+    from
+        Guide guide0_
+23:10:50,933 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_,
+        guide0_.name as name2_7_,
+        guide0_.salary as salary3_7_,
+        guide0_.staff_id as staff_id4_7_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.salary=1000
+23:10:51,291 DEBUG SQL:109 - 
+    select
+        guide0_.name as col_0_0_,
+        guide0_.salary as col_1_0_ 
+    from
+        Guide guide0_
+23:10:51,614 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_,
+        guide0_.name as name2_7_,
+        guide0_.salary as salary3_7_,
+        guide0_.staff_id as staff_id4_7_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.name=?
+23:10:51,616 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [Ian Lamb]
+23:10:51,908 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_,
+        guide0_.name as name2_7_,
+        guide0_.salary as salary3_7_,
+        guide0_.staff_id as staff_id4_7_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.name like 'M%'
+23:10:52,218 DEBUG SQL:109 - 
+    select
+        * 
+    from
+        guide
+23:10:52,485 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_,
+        guide0_.name as name2_7_,
+        guide0_.salary as salary3_7_,
+        guide0_.staff_id as staff_id4_7_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.name=?
+23:10:52,485 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [Mike Lawson]
+23:10:52,766 DEBUG SQL:109 - 
+    select
+        count(guide0_.id) as col_0_0_ 
+    from
+        Guide guide0_
+23:10:53,065 DEBUG SQL:109 - 
+    select
+        max(guide0_.salary) as col_0_0_ 
+    from
+        Guide guide0_
+23:11:18,897 DEBUG SQL:109 - 
+    select
+        student0_.id as id1_8_,
+        student0_.enrollmentId as enrollme2_8_,
+        student0_.guide_id as guide_id4_8_,
+        student0_.name as name3_8_ 
+    from
+        Student student0_ 
+    inner join
+        Guide guide1_ 
+            on student0_.guide_id=guide1_.id
+23:11:18,934 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_0_,
+        guide0_.name as name2_7_0_,
+        guide0_.salary as salary3_7_0_,
+        guide0_.staff_id as staff_id4_7_0_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.id=?
+23:11:18,940 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:11:19,363 DEBUG SQL:109 - 
+    select
+        student0_.id as id1_8_,
+        student0_.enrollmentId as enrollme2_8_,
+        student0_.guide_id as guide_id4_8_,
+        student0_.name as name3_8_ 
+    from
+        Student student0_ 
+    left outer join
+        Guide guide1_ 
+            on student0_.guide_id=guide1_.id
+23:11:19,368 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_0_,
+        guide0_.name as name2_7_0_,
+        guide0_.salary as salary3_7_0_,
+        guide0_.staff_id as staff_id4_7_0_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.id=?
+23:11:19,369 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:11:19,811 DEBUG SQL:109 - 
+    select
+        student0_.id as id1_8_,
+        student0_.enrollmentId as enrollme2_8_,
+        student0_.guide_id as guide_id4_8_,
+        student0_.name as name3_8_ 
+    from
+        Student student0_ 
+    right outer join
+        Guide guide1_ 
+            on student0_.guide_id=guide1_.id
+23:11:19,815 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_0_,
+        guide0_.name as name2_7_0_,
+        guide0_.salary as salary3_7_0_,
+        guide0_.staff_id as staff_id4_7_0_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.id=?
+23:11:19,815 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:11:20,172 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_0_,
+        students1_.id as id1_8_1_,
+        guide0_.name as name2_7_0_,
+        guide0_.salary as salary3_7_0_,
+        guide0_.staff_id as staff_id4_7_0_,
+        students1_.enrollmentId as enrollme2_8_1_,
+        students1_.guide_id as guide_id4_8_1_,
+        students1_.name as name3_8_1_,
+        students1_.guide_id as guide_id4_7_0__,
+        students1_.id as id1_8_0__ 
+    from
+        Guide guide0_ 
+    inner join
+        Student students1_ 
+            on guide0_.id=students1_.guide_id
+23:11:59,783 DEBUG SQL:109 - 
+    insert 
+    into
+        Animal
+        (name, DTYPE) 
+    values
+        (?, 'Cat')
+23:11:59,790 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [Lucy]
+23:11:59,888 DEBUG SQL:109 - 
+    insert 
+    into
+        Animal
+        (name, DTYPE) 
+    values
+        (?, 'Dog')
+23:11:59,889 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [Oliver]
+23:12:00,519 DEBUG SQL:109 - 
+    select
+        animal0_.id as id2_0_,
+        animal0_.name as name3_0_,
+        animal0_.DTYPE as DTYPE1_0_ 
+    from
+        Animal animal0_
+23:12:00,882 DEBUG SQL:109 - 
+    select
+        dog0_.id as id2_0_,
+        dog0_.name as name3_0_ 
+    from
+        Animal dog0_ 
+    where
+        dog0_.DTYPE='Dog'
+23:12:01,225 DEBUG SQL:109 - 
+    insert 
+    into
+        Animal2
+        (name) 
+    values
+        (?)
+23:12:01,226 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [Lucy]
+23:12:01,261 DEBUG SQL:109 - 
+    insert 
+    into
+        Cat2
+        (id) 
+    values
+        (?)
+23:12:01,263 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [1]
+23:12:01,330 DEBUG SQL:109 - 
+    insert 
+    into
+        Animal2
+        (name) 
+    values
+        (?)
+23:12:01,331 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [Oliver]
+23:12:01,337 DEBUG SQL:109 - 
+    insert 
+    into
+        Dog2
+        (id) 
+    values
+        (?)
+23:12:01,338 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:12:01,883 DEBUG SQL:109 - 
+    select
+        animal2x0_.id as id1_1_,
+        animal2x0_.name as name2_1_,
+        case 
+            when animal2x0_1_.id is not null then 1 
+            when animal2x0_2_.id is not null then 2 
+            when animal2x0_.id is not null then 0 
+        end as clazz_ 
+    from
+        Animal2 animal2x0_ 
+    left outer join
+        Cat2 animal2x0_1_ 
+            on animal2x0_.id=animal2x0_1_.id 
+    left outer join
+        Dog2 animal2x0_2_ 
+            on animal2x0_.id=animal2x0_2_.id
+23:12:02,215 DEBUG SQL:109 - 
+    select
+        dog2x0_.id as id1_1_,
+        dog2x0_1_.name as name2_1_ 
+    from
+        Dog2 dog2x0_ 
+    inner join
+        Animal2 dog2x0_1_ 
+            on dog2x0_.id=dog2x0_1_.id
+23:12:02,532 DEBUG SQL:109 - 
+    select
+        cat2x0_.id as id1_1_,
+        cat2x0_1_.name as name2_1_ 
+    from
+        Cat2 cat2x0_ 
+    inner join
+        Animal2 cat2x0_1_ 
+            on cat2x0_.id=cat2x0_1_.id
+23:12:02,910 DEBUG SQL:109 - 
+    select
+        sequence_next_hi_value 
+    from
+        hibernate_sequences 
+    where
+        sequence_name = 'Animal3' for update
+            
+23:12:02,940 DEBUG SQL:109 - 
+    insert 
+    into
+        hibernate_sequences
+        (sequence_name, sequence_next_hi_value) 
+    values
+        ('Animal3', ?)
+23:12:02,948 DEBUG SQL:109 - 
+    update
+        hibernate_sequences 
+    set
+        sequence_next_hi_value = ? 
+    where
+        sequence_next_hi_value = ? 
+        and sequence_name = 'Animal3'
+23:12:03,259 DEBUG SQL:109 - 
+    insert 
+    into
+        Cat3
+        (name, id) 
+    values
+        (?, ?)
+23:12:03,260 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [Lucy]
+23:12:03,260 TRACE BasicBinder:81 - binding parameter [2] as [BIGINT] - [1]
+23:12:03,328 DEBUG SQL:109 - 
+    insert 
+    into
+        Dog3
+        (name, id) 
+    values
+        (?, ?)
+23:12:03,328 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [Oliver]
+23:12:03,329 TRACE BasicBinder:81 - binding parameter [2] as [BIGINT] - [2]
+23:12:03,755 DEBUG SQL:109 - 
+    select
+        animal3x0_.id as id1_2_,
+        animal3x0_.name as name2_2_,
+        animal3x0_.clazz_ as clazz_ 
+    from
+        ( select
+            id,
+            name,
+            1 as clazz_ 
+        from
+            Cat3 
+        union
+        select
+            id,
+            name,
+            2 as clazz_ 
+        from
+            Dog3 
+    ) animal3x0_
+23:12:04,020 DEBUG SQL:109 - 
+    select
+        dog3x0_.id as id1_2_,
+        dog3x0_.name as name2_2_ 
+    from
+        Dog3 dog3x0_
+23:12:04,283 DEBUG SQL:109 - 
+    select
+        cat3x0_.id as id1_2_,
+        cat3x0_.name as name2_2_ 
+    from
+        Cat3 cat3x0_
+23:12:31,991 DEBUG SQL:109 - 
+    select
+        student0_.id as id1_8_0_,
+        guide1_.id as id1_7_1_,
+        student0_.enrollmentId as enrollme2_8_0_,
+        student0_.guide_id as guide_id4_8_0_,
+        student0_.name as name3_8_0_,
+        guide1_.name as name2_7_1_,
+        guide1_.salary as salary3_7_1_,
+        guide1_.staff_id as staff_id4_7_1_ 
+    from
+        Student student0_ 
+    left outer join
+        Guide guide1_ 
+            on student0_.guide_id=guide1_.id
+23:13:54,962 DEBUG SQL:109 - 
+    select
+        guide0_.id as id1_7_0_,
+        guide0_.name as name2_7_0_,
+        guide0_.salary as salary3_7_0_,
+        guide0_.staff_id as staff_id4_7_0_ 
+    from
+        Guide guide0_ 
+    where
+        guide0_.id=?
+23:13:54,970 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:13:55,045 DEBUG SQL:109 - 
+    select
+        students0_.guide_id as guide_id4_7_0_,
+        students0_.id as id1_8_0_,
+        students0_.id as id1_8_1_,
+        students0_.enrollmentId as enrollme2_8_1_,
+        students0_.guide_id as guide_id4_8_1_,
+        students0_.name as name3_8_1_ 
+    from
+        Student students0_ 
+    where
+        students0_.guide_id=?
+23:13:55,046 TRACE BasicBinder:81 - binding parameter [1] as [BIGINT] - [2]
+23:13:55,088 DEBUG SQL:109 - 
+    update
+        Guide 
+    set
+        name=?,
+        salary=?,
+        staff_id=? 
+    where
+        id=?
+23:13:55,090 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [Ian Lamb]
+23:13:55,091 TRACE BasicBinder:81 - binding parameter [2] as [INTEGER] - [2500]
+23:13:55,091 TRACE BasicBinder:81 - binding parameter [3] as [VARCHAR] - [2000IM10901]
+23:13:55,091 TRACE BasicBinder:81 - binding parameter [4] as [BIGINT] - [2]
+23:13:55,102 DEBUG SQL:109 - 
+    update
+        Student 
+    set
+        enrollmentId=?,
+        guide_id=?,
+        name=? 
+    where
+        id=?
+23:13:55,103 TRACE BasicBinder:81 - binding parameter [1] as [VARCHAR] - [2014AL50456]
+23:13:55,104 TRACE BasicBinder:81 - binding parameter [2] as [BIGINT] - [2]
+23:13:55,104 TRACE BasicBinder:81 - binding parameter [3] as [VARCHAR] - [Amy Jade Gill]
+23:13:55,104 TRACE BasicBinder:81 - binding parameter [4] as [BIGINT] - [1]
