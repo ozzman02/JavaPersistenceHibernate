@@ -29,7 +29,7 @@ public class Main {
     }
 
     static void compositeKeyExample() {
-        //CompositeKey.createParentPrimaryKey();
+        CompositeKey.createParentPrimaryKey();
         CompositeKey.createParentWithChildren();
     }
 
@@ -39,11 +39,11 @@ public class Main {
             Clean the database before running all the methods
          */
 
-        //oneToManyExamples();
-        //oneToOneExample();
-        //manyToManyExample();
-        //mappingEnumsExample();
-        //mapCollectionsOfSimpleValueTypesExample();
+        oneToManyExamples();
+        oneToOneExample();
+        manyToManyExample();
+        mappingEnumsExample();
+        mapCollectionsOfSimpleValueTypesExample();
         compositeKeyExample();
     }
 
