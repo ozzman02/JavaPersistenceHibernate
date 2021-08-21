@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/persistence_hibernate?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">admin</property>
+
+        <!-- SQL Dialect -->
+        <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
+
+        <!-- Create/Update database tables automatically using mapping metadata -->
+        <property name="hbm2ddl.auto">update</property>
+
+        <property name="hibernate.show_sql">true</property>
+        <property name="format_sql">true</property>
+
+        <mapping class="com.hibernate.basic.componentmapping.entity.Person" />
+        <mapping class="com.hibernate.basic.onetomany.entity.Guide" />
+        <mapping class="com.hibernate.basic.onetomany.entity.Student" />
+        <mapping class="com.hibernate.basic.onetoone.entity.Customer" />
+        <mapping class="com.hibernate.basic.onetoone.entity.Passport" />
+        <mapping class="com.hibernate.basic.mapsid.entity.Customer2" />
+        <mapping class="com.hibernate.basic.mapsid.entity.Passport2" />
+        <mapping class="com.hibernate.basic.manytomany.entity.Actor" />
+        <mapping class="com.hibernate.basic.manytomany.entity.Movie" />
+        <mapping class="com.hibernate.basic.mappingenums.entity.Employee" />
+        <mapping class="com.hibernate.basic.collectionofvaluetypes.entity.Friend" />
+        <mapping class="com.hibernate.basic.collectionofvaluetypes.entity.Item" />
+        <mapping class="com.hibernate.basic.compositekeys.primary.entity.Parent" />
+        <mapping class="com.hibernate.basic.compositekeys.primary.entity.Child" />
+        <mapping class="com.hibernate.basic.compositekeys.foreign.entity.Department" />
+        <mapping class="com.hibernate.basic.compositekeys.foreign.entity.User" />
+        <mapping class="com.hibernate.basic.bookstore.entity.Book" />
+        <mapping class="com.hibernate.basic.bookstore.entity.Chapter" />
+        <mapping class="com.hibernate.basic.bookstore.entity.Publisher" />
+
+    </session-factory>
+
+</hibernate-configuration>

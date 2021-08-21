@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.hibernate.project</groupId>
+    <artifactId>hibernateProject</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <description>Hibernate and JPA</description>
+
+    <dependencies>
+        <!-- Another Tool for Language Recognition) is a powerful parser generator for reading, processing,
+            executing, or translating structured text or binary files.-->
+        <dependency>
+            <groupId>antlr</groupId>
+            <artifactId>antlr</artifactId>
+            <version>2.7.7</version>
+        </dependency>
+        <!-- Provides a host of helper utilities for the java.lang API, notably String manipulation methods,
+            basic numerical methods, object reflection, concurrency, creation and serialization
+            and System properties. Additionally it contains basic enhancements to java.util.Date and a
+            series of utilities dedicated to help with building methods, such as hashCode, toString and equals. -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+        <!-- Flexible XML framework for Java -->
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>2.1.3</version>
+        </dependency>
+        <!-- Open source, standards-based cache that boosts performance, offloads your database,
+            and simplifies scalability. -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>2.6.11</version>
+        </dependency>
+        <!--  Hibernate Annotations is a utility project used by annotations based hibernate sub-projects. -->
+        <dependency>
+            <groupId>org.hibernate.common</groupId>
+            <artifactId>hibernate-commons-annotations</artifactId>
+            <version>5.1.2.Final</version>
+        </dependency>
+        <!-- Hibernate is an open source Java persistence framework project. Perform powerful
+            object relational mapping and query databases using HQL and SQL -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.5.5.Final</version>
+        </dependency>
+        <!-- This interface is similar to the SessionFactory in native Hibernate. EntityManager.
+            The EntityManager API is used to access a database in a particular unit of work.
+            It is used to create and remove persistent entity instances, to find entities by their
+            primary key identity, and to query over all entities. -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.5.5.Final</version>
+        </dependency>
+        <!--  Hibernate second level caching is designed to be unaware of the actual cache provider used.
+            Hibernate only needs to be provided with an implementation of the org.hibernate.cache.spi.RegionFactory
+            interface which encapsulates all details specific to actual cache providers.
+            Basically, it acts as a bridge between Hibernate and cache providers.
+            We add the Ehcache region factory implementation to the classpath with this dependency -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>5.5.5.Final</version>
+        </dependency>
+        <!-- Clean-room definition of JPA APIs intended for use in developing Hibernate JPA implementation -->
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.2.Final</version>
+        </dependency>
+        <!-- Jandex is a space efficient Java annotation indexer and offline reflection library. -->
+        <dependency>
+            <groupId>org.jboss</groupId>
+            <artifactId>jandex</artifactId>
+            <version>2.3.0.Final</version>
+        </dependency>
+        <!-- Javassist (Java Programming Assistant) makes Java bytecode manipulation simple.
+            It is a class library for editing bytecodes in Java; it enables Java programs to define a
+            new class at runtime and to modify a class file when the JVM loads it -->
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.28.0-GA</version>
+        </dependency>
+        <!-- JBoss Logging is a "logging bridge" providing integration with numerous logging frameworks. -->
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>3.4.2.Final</version>
+        </dependency>
+        <!-- If you want to internationalize (i18n) your logging, exception messages and messages in general,
+            then along with JBoss Logging 3.x, JBoss Logging Tools is for you. It provides an easy way to
+            offer internationalized messages, exceptions and logger messages to your project. -->
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging-annotations</artifactId>
+            <version>2.2.1.Final</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- The Java Transaction 1.2 API classes -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.transaction</groupId>
+            <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+            <version>1.1.1.Final</version>
+        </dependency>
+        <!-- log4j is a tool to help the programmer output log statements to a variety of output targets -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <!-- JDBC Driver for MySQL -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.26</version>
+        </dependency>
+        <!-- The Simple Logging Facade for Java (SLF4J) serves as a simple facade or abstraction for various
+            logging frameworks (e.g. java.util.logging, logback, log4j) allowing the end user to plug in
+            the desired logging framework at deployment time -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.32</version>
+        </dependency>
+        <!-- Use slf4j-log4j together -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.32</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
