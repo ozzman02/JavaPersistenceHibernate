@@ -6,9 +6,9 @@ import com.hibernate.basic.compositekeys.primary.service.impl.CompositeKeysServi
 public class CompositeKeysClient {
     public static void main(String[] args) {
         CompositeKeysService compositeKeysService = new CompositeKeysServiceImpl();
-        //compositeKeysService.saveParent();
-        //compositeKeysService.getParent();
-        //compositeKeysService.saveParentWithChild();
+        compositeKeysService.saveParent();
+        compositeKeysService.getParent();
+        compositeKeysService.saveParentWithChild();
         compositeKeysService.getParentWithChild();
     }
 }

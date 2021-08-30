@@ -8,51 +8,27 @@ import javax.persistence.*;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.hibernate.advanced.constants.Constants.COUNT_GUIDES_QUERY;
+import static com.hibernate.advanced.constants.Constants.FIND_GUIDE_BY_NAME;
+import static com.hibernate.advanced.constants.Constants.GET_GUIDE_BY_SALARY;
+import static com.hibernate.advanced.constants.Constants.GET_MAX_SALARY_QUERY;
+import static com.hibernate.advanced.constants.Constants.GUIDES_WITH_AT_LEAST_ONE_STUDENT_QUERY;
+import static com.hibernate.advanced.constants.Constants.GUIDES_WITH_NO_STUDENTS_QUERY;
+import static com.hibernate.advanced.constants.Constants.INNER_JOIN_QUERY;
+import static com.hibernate.advanced.constants.Constants.JOIN_FETCH_QUERY;
+import static com.hibernate.advanced.constants.Constants.LEFT_JOIN_QUERY;
+import static com.hibernate.advanced.constants.Constants.LIST_GUIDES;
+import static com.hibernate.advanced.constants.Constants.LIST_GUIDES_NATIVE_QUERY;
+import static com.hibernate.advanced.constants.Constants.LIST_GUIDES_REPORT;
 import static com.hibernate.advanced.constants.Constants.PERSISTENCE_UNIT_NAME;
+import static com.hibernate.advanced.constants.Constants.RIGHT_JOIN_QUERY;
+import static com.hibernate.advanced.constants.Constants.STUDENTS_WITH_NO_GUIDE_QUERY;
 
 public class JpqlServiceImpl implements JpqlService {
 
-    private static final String LIST_GUIDES = "select guide from Guide3 as guide";
-
-    private static final String GET_GUIDE_BY_SALARY
-            = "select guide from Guide3 guide where guide.salary = 1000";
-
-    private static final String LIST_GUIDES_REPORT
-            = "select guide.name, guide.salary from Guide3 as guide";
-
-    private static final String LIST_GUIDES_NATIVE_QUERY = "select * from guide3";
-
-    private static final String FIND_GUIDE_BY_NAME = "findGuideByName";
-
-    private static final String COUNT_GUIDES_QUERY = "select count(guide) from Guide3 guide";
-
-    private static final String GET_MAX_SALARY_QUERY = "select max(guide.salary) from Guide3 guide";
-
-    private static final String INNER_JOIN_QUERY
-            = "select student from Student3 student join student.guide guide";
-
-    private static final String LEFT_JOIN_QUERY
-            = "select student from Student3 student left join student.guide guide";
-
-    private static final String RIGHT_JOIN_QUERY
-            = "select student from Student3 student right join student.guide guide";
-
-    private static final String JOIN_FETCH_QUERY
-            = "select guide from Guide3 guide join fetch guide.students student";
-
-    private static final String STUDENTS_WITH_NO_GUIDE_QUERY
-            = "select student.name, student.enrollmentId from Student3 student where student.guide is null";
-
-    private static final String GUIDES_WITH_NO_STUDENTS_QUERY
-            = "select g.name, g.staffId from Guide3 g where size(g.students) is 0";
-
-    private static final String GUIDES_WITH_AT_LEAST_ONE_STUDENT_QUERY
-            = "select g from Guide3 g join g.students s where s.name like 'A%'";
-
     @Override
     public void saveStudentsAndGuides() {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -84,8 +60,7 @@ public class JpqlServiceImpl implements JpqlService {
 
     @Override
     public void listGuides() {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -108,8 +83,7 @@ public class JpqlServiceImpl implements JpqlService {
 
     @Override
     public void getGuideBySalary() {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -132,8 +106,7 @@ public class JpqlServiceImpl implements JpqlService {
 
     @Override
     public void listGuidesReport() {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -157,8 +130,7 @@ public class JpqlServiceImpl implements JpqlService {
     @Override
     public void getGuideByName(String name) {
         String getGuideByNameQuery = "select guide from Guide3 guide where guide.name ='" + name + "'";
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -180,8 +152,7 @@ public class JpqlServiceImpl implements JpqlService {
     @Override
     public void getGuideByNameWithNamedParameter(String name) {
         String getGuideByNameQuery = "select guide from Guide3 guide where guide.name = :name";
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -204,8 +175,7 @@ public class JpqlServiceImpl implements JpqlService {
     @Override
     public void getGuideByNameUsingLikePattern() {
         String getGuideByNameQuery = "select guide from Guide3 guide where guide.name like 'M%'";
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -228,8 +198,7 @@ public class JpqlServiceImpl implements JpqlService {
 
     @Override
     public void listGuidesWithNativeQuery() {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -252,8 +221,7 @@ public class JpqlServiceImpl implements JpqlService {
 
     @Override
     public void findGuideByName(String name) {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -276,8 +244,7 @@ public class JpqlServiceImpl implements JpqlService {
 
     @Override
     public void getNumberOfGuides() {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -297,8 +264,7 @@ public class JpqlServiceImpl implements JpqlService {
 
     @Override
     public void countGuides() {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -318,8 +284,7 @@ public class JpqlServiceImpl implements JpqlService {
 
     @Override
     public void getMaxSalary() {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -339,8 +304,7 @@ public class JpqlServiceImpl implements JpqlService {
 
     @Override
     public void innerJoin() {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -361,8 +325,7 @@ public class JpqlServiceImpl implements JpqlService {
 
     @Override
     public void leftJoin() {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -383,8 +346,7 @@ public class JpqlServiceImpl implements JpqlService {
 
     @Override
     public void rightJoin() {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -405,8 +367,7 @@ public class JpqlServiceImpl implements JpqlService {
 
     @Override
     public void joinFetch() {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -426,8 +387,7 @@ public class JpqlServiceImpl implements JpqlService {
 
     @Override
     public void studentsWithNoGuideReport() {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -450,8 +410,7 @@ public class JpqlServiceImpl implements JpqlService {
 
     @Override
     public void guidesWithNoStudentsReport() {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -474,8 +433,7 @@ public class JpqlServiceImpl implements JpqlService {
 
     @Override
     public void guidesWithAtLeastOneStudent() {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -496,8 +454,7 @@ public class JpqlServiceImpl implements JpqlService {
 
     @Override
     public void flushingWithDefault() {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
@@ -522,8 +479,7 @@ public class JpqlServiceImpl implements JpqlService {
 
     @Override
     public void flushingWithCommitMode() {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {

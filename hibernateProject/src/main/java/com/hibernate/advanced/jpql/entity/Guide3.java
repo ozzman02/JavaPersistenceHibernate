@@ -6,6 +6,11 @@ import java.util.Set;
 import java.util.StringJoiner;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Guide.findAll", query = "select g from Guide3 g"),
+        @NamedQuery(name = "Guide.findByName", query = "select g from Guide3 g where g.name = :name"),
+        @NamedQuery(name = "Guide.findById", query = "select g from Guide3 g where g.id = :id")
+})
 public class Guide3 {
 
     @Id
