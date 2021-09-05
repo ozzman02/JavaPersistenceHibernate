@@ -11,10 +11,9 @@
 
             <!-- Database connection settings -->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost:3306/persistence_hibernate?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC"/>
-            <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="javax.persistence.jdbc.password" value="GodAdmin"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/persistence_hibernate?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC"/>
+            <property name="javax.persistence.jdbc.user" value="persistence_hibernate_user"/>
+            <property name="javax.persistence.jdbc.password" value="password"/>
 
             <!-- SQL Dialect -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
