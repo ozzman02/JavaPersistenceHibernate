@@ -7,8 +7,8 @@ import com.hibernate.advanced._07_selects_problem.service.impl.SelectsProblemSer
 public class SelectsProblemClient {
     public static void main(String[] args) {
         SelectsProblemService selectsProblemService = new SelectsProblemServiceImpl();
-        //selectsProblemService.createGuidesAndStudents();
-        //selectsProblemService.displayStudentNameAndEnrollmentId();
+        selectsProblemService.createGuidesAndStudents();
+        selectsProblemService.displayStudentNameAndEnrollmentId();
         selectsProblemService.displayStudentNameEnrollmentIdAndGuideName();
     }
 }

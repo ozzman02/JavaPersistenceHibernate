@@ -6,7 +6,9 @@ import com.hibernate.advanced._07_selects_problem.service.SelectsProblemService;
 
 import javax.persistence.*;
 
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import static com.hibernate.advanced.constants.Constants.PERSISTENCE_UNIT_NAME;
 
@@ -26,8 +28,10 @@ public class SelectsProblemServiceImpl implements SelectsProblemService {
             StudentObject student2 = new StudentObject("2014JT50123","John Smith");
             StudentObject student3 = new StudentObject("2014BE50789","Bruce Lee");
             StudentObject student4 = new StudentObject("2014RG50347","Rahul Singh");
-            guide2.addStudent(student1);
-            guide2.addStudent(student2);
+            Set<StudentObject> students = new LinkedHashSet<>();
+            students.add(student1);
+            students.add(student2);
+            guide2.addStudents(students);
             guide3.addStudent(student4);
             entityManager.persist(guide1);
             entityManager.persist(guide2);

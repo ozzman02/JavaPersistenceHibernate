@@ -47,6 +47,10 @@ public class GuideObject {
         student.setGuide(this);
     }
 
+    public void addStudents(Set<StudentObject> students) {
+        students.forEach(studentObject -> addStudent(studentObject));
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
