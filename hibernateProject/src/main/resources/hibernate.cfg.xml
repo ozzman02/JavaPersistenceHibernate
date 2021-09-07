@@ -22,25 +22,25 @@
         <property name="hibernate.show_sql">true</property>
         <property name="format_sql">true</property>
 
-        <mapping class="com.hibernate.basic.componentmapping.entity.Person" />
-        <mapping class="com.hibernate.basic.onetomany.entity.Guide" />
-        <mapping class="com.hibernate.basic.onetomany.entity.Student" />
-        <mapping class="com.hibernate.basic.onetoone.entity.Customer" />
-        <mapping class="com.hibernate.basic.onetoone.entity.Passport" />
-        <mapping class="com.hibernate.basic.mapsid.entity.Customer2" />
-        <mapping class="com.hibernate.basic.mapsid.entity.Passport2" />
-        <mapping class="com.hibernate.basic.manytomany.entity.Actor" />
-        <mapping class="com.hibernate.basic.manytomany.entity.Movie" />
-        <mapping class="com.hibernate.basic.mappingenums.entity.Employee" />
-        <mapping class="com.hibernate.basic.collectionofvaluetypes.entity.Friend" />
-        <mapping class="com.hibernate.basic.collectionofvaluetypes.entity.Item" />
-        <mapping class="com.hibernate.basic.compositekeys.primary.entity.Parent" />
-        <mapping class="com.hibernate.basic.compositekeys.primary.entity.Child" />
-        <mapping class="com.hibernate.basic.compositekeys.foreign.entity.Department" />
-        <mapping class="com.hibernate.basic.compositekeys.foreign.entity.User" />
-        <mapping class="com.hibernate.basic.bookstore.entity.Book" />
-        <mapping class="com.hibernate.basic.bookstore.entity.Chapter" />
-        <mapping class="com.hibernate.basic.bookstore.entity.Publisher" />
+        <mapping class="com.hibernate.basic._01_component_mapping.entity.Person" />
+        <mapping class="com.hibernate.basic._02_one_to_many.entity.Guide" />
+        <mapping class="com.hibernate.basic._02_one_to_many.entity.Student" />
+        <mapping class="com.hibernate.basic._03_one_to_one.entity.Customer" />
+        <mapping class="com.hibernate.basic._03_one_to_one.entity.Passport" />
+        <mapping class="com.hibernate.basic._04_mapsid.entity.Customer2" />
+        <mapping class="com.hibernate.basic._04_mapsid.entity.Passport2" />
+        <mapping class="com.hibernate.basic._05_many_to_many.entity.Actor" />
+        <mapping class="com.hibernate.basic._05_many_to_many.entity.Movie" />
+        <mapping class="com.hibernate.basic._06_mapping_enums.entity.Employee" />
+        <mapping class="com.hibernate.basic._07_collection_of_value_types.entity.Friend" />
+        <mapping class="com.hibernate.basic._07_collection_of_value_types.entity.Item" />
+        <mapping class="com.hibernate.basic._08_composite_keys.primary.entity.Parent" />
+        <mapping class="com.hibernate.basic._08_composite_keys.primary.entity.Child" />
+        <mapping class="com.hibernate.basic._08_composite_keys.foreign.entity.Department" />
+        <mapping class="com.hibernate.basic._08_composite_keys.foreign.entity.User" />
+        <mapping class="com.hibernate.basic._09_bookstore.entity.Book" />
+        <mapping class="com.hibernate.basic._09_bookstore.entity.Chapter" />
+        <mapping class="com.hibernate.basic._09_bookstore.entity.Publisher" />
 
     </session-factory>
 
