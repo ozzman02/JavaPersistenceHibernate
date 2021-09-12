@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import javax.persistence.*;
 
 @Entity
-public class StudentForMergedDetachedObj {
+public class StudentForExtendedPersistenceContext {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,24 +17,17 @@ public class StudentForMergedDetachedObj {
 
     private String name;
 
-    /* Important to run the other methods related to merge and detach */
-    /* Remember if we use Lazy a Student will get a Proxy of the associated Guide */
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="guide_id")
-    private GuideForMergedDetachedObj guide;
-
-    /* This is important to run the createGuidesAndStudents method
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name="guide_id")
-    private GuideForMergedDetachedObj guide; */
+    private GuideForExtendedPersistenceContext guide;
 
-    public StudentForMergedDetachedObj() {}
+    public StudentForExtendedPersistenceContext() {}
 
-    public StudentForMergedDetachedObj(String enrollmentId, String name) {
+    public StudentForExtendedPersistenceContext(String enrollmentId, String name) {
         this.enrollmentId = enrollmentId; 	this.name = name;
     }
 
-    public void setGuide(GuideForMergedDetachedObj guide) {
+    public void setGuide(GuideForExtendedPersistenceContext guide) {
         this.guide = guide;
     }
     public void setName(String name) {
@@ -51,8 +44,8 @@ public class StudentForMergedDetachedObj {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof StudentForMergedDetachedObj)) return false;
-        StudentForMergedDetachedObj other = (StudentForMergedDetachedObj) obj;
+        if(!(obj instanceof StudentForExtendedPersistenceContext)) return false;
+        StudentForExtendedPersistenceContext other = (StudentForExtendedPersistenceContext) obj;
         return new EqualsBuilder().append(enrollmentId, other.enrollmentId).isEquals();
     }
 
@@ -61,5 +54,4 @@ public class StudentForMergedDetachedObj {
         return "Student [id=" + id + ", enrollmentId=" + enrollmentId
                 + ", name=" + name + ", guide=" + guide + "]";
     }
-
 }

@@ -6,6 +6,12 @@ import com.hibernate.advanced._09_merge_detached_objects.service.impl.MergeDetac
 public class MergeDetachedObjectsClient {
     public static void main(String[] args) {
         MergeDetachedObjectsService mergeDetachedObjectsService = new MergeDetachedObjectsServiceImpl();
-        mergeDetachedObjectsService.createGuidesAndStudents();
+        //mergeDetachedObjectsService.createGuidesAndStudents();
+        mergeDetachedObjectsService.mergingDetachedObjects();
+        //mergeDetachedObjectsService.createGuideAndStudentsForExtendedPersistenceContext();
+        mergeDetachedObjectsService.objectModificationsOnAnExtendedPersistenceContext();
+        //mergeDetachedObjectsService.createSimpleStudentData();
+        mergeDetachedObjectsService.identityOfDetachedObjects();
+        mergeDetachedObjectsService.usingIdForEqualsAndHashCode();
     }
 }

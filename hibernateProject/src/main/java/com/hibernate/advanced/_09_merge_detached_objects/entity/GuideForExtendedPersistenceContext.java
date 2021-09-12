@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class GuideForMergedDetachedObj {
+public class GuideForExtendedPersistenceContext {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,18 +18,12 @@ public class GuideForMergedDetachedObj {
 
     private Integer salary;
 
-    /* Important to run the other methods related to merge and detach */
-    /* Remember if a Guide is loaded it will get a Proxy of the associated Students */
-    @OneToMany(mappedBy = "guide", cascade = CascadeType.MERGE)
-    private Set<StudentForMergedDetachedObj> students = new HashSet<>();
-
-    /* This is important to run the createGuidesAndStudents method
     @OneToMany(mappedBy = "guide", cascade={CascadeType.PERSIST})
-    private Set<StudentForMergedDetachedObj> students = new HashSet<>(); */
+    private Set<StudentForExtendedPersistenceContext> students = new HashSet<>();
 
-    public GuideForMergedDetachedObj() {	}
+    public GuideForExtendedPersistenceContext() {	}
 
-    public GuideForMergedDetachedObj(String staffId, String name, Integer salary) {
+    public GuideForExtendedPersistenceContext(String staffId, String name, Integer salary) {
         this.staffId = staffId;
         this.name = name;
         this.salary = salary;
@@ -39,17 +33,16 @@ public class GuideForMergedDetachedObj {
         this.salary = salary;
     }
 
-    public Set<StudentForMergedDetachedObj> getStudents() {
+    public Set<StudentForExtendedPersistenceContext> getStudents() {
         return students;
     }
 
-    public void addStudent(StudentForMergedDetachedObj student) {
+    public void addStudent(StudentForExtendedPersistenceContext student) {
         students.add(student);
         student.setGuide(this);
     }
 
-    public void addStudents(Set<StudentForMergedDetachedObj> students) {
+    public void addStudents(Set<StudentForExtendedPersistenceContext> students) {
         students.forEach(studentForMergedDetachedObj -> addStudent(studentForMergedDetachedObj));
     }
-
 }
