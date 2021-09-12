@@ -12,5 +12,12 @@
 				]]>
             </query>
         </named-query>
+        <named-query name="getGuideByName">
+            <query>
+                <![CDATA[
+					select g from GuideForCriteriaApi g where g.name = :name
+				]]>
+            </query>
+        </named-query>
     </entity>
 </entity-mappings>

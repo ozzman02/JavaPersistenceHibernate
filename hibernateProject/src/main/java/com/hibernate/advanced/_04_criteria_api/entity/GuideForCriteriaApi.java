@@ -1,4 +1,6 @@
-package com.hibernate.advanced._03_jpql.entity;
+package com.hibernate.advanced._04_criteria_api.entity;
+
+import com.hibernate.advanced._03_jpql.entity.Guide3;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -6,7 +8,12 @@ import java.util.Set;
 import java.util.StringJoiner;
 
 @Entity
-public class Guide3 {
+@NamedQueries({
+        @NamedQuery(name = "Guide.findAll", query = "select g from GuideForCriteriaApi g"),
+        @NamedQuery(name = "Guide.findByName", query = "select g from GuideForCriteriaApi g where g.name = :name"),
+        @NamedQuery(name = "Guide.findById", query = "select g from GuideForCriteriaApi g where g.id = :id")
+})
+public class GuideForCriteriaApi {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,24 +27,25 @@ public class Guide3 {
     private Integer salary;
 
     @OneToMany(mappedBy="guide", cascade={CascadeType.PERSIST})
-    private Set<Student3> students = new HashSet<>();
+    private Set<StudentForCriteriaApi> students = new HashSet<>();
 
-    public Guide3() {}
+    public GuideForCriteriaApi() {}
 
-    public Guide3(String staffId, String name, Integer salary) {
+    public GuideForCriteriaApi(String staffId, String name, Integer salary) {
         this.staffId = staffId;
         this.name = name;
         this.salary = salary;
     }
 
-    public Set<Student3> getStudents() {
+    public Set<StudentForCriteriaApi> getStudents() {
         return students;
     }
+
     public void setSalary(Integer salary) {
         this.salary = salary;
     }
 
-    public void addStudent(Student3 student) {
+    public void addStudent(StudentForCriteriaApi student) {
         students.add(student);
         student.setGuide(this);
     }
@@ -51,4 +59,5 @@ public class Guide3 {
                 .add("salary=" + salary)
                 .toString();
     }
+
 }

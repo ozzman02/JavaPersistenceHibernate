@@ -1,14 +1,13 @@
 package com.hibernate.advanced._04_criteria_api.service.impl;
 
+import com.hibernate.advanced._04_criteria_api.entity.GuideForCriteriaApi;
+import com.hibernate.advanced._04_criteria_api.entity.GuideForCriteriaApi_;
+import com.hibernate.advanced._04_criteria_api.entity.StudentForCriteriaApi;
+import com.hibernate.advanced._04_criteria_api.entity.StudentForCriteriaApi_;
 import com.hibernate.advanced._04_criteria_api.service.CriteriaApiService;
-import com.hibernate.advanced._03_jpql.entity.Guide3;
-import com.hibernate.advanced._03_jpql.entity.Guide3_;
-import com.hibernate.advanced._03_jpql.entity.Student3;
-import com.hibernate.advanced._03_jpql.entity.Student3_;
 
 import javax.persistence.*;
 import javax.persistence.criteria.*;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,7 +15,39 @@ import static com.hibernate.advanced.constants.Constants.*;
 
 public class CriteriaApiServiceImpl implements CriteriaApiService {
 
-    /* select guide from Guide3 guide */
+    @Override
+    public void saveStudentsAndGuides() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        try {
+            entityTransaction.begin();
+            GuideForCriteriaApi guide1 = new GuideForCriteriaApi("2000MO10789", "Mike Lawson", 1000);
+            GuideForCriteriaApi guide2 = new GuideForCriteriaApi("2000IM10901", "Ian Lamb", 2000);
+            GuideForCriteriaApi guide3 = new GuideForCriteriaApi("2000IM10888", "Dean Ring", 2000);
+            StudentForCriteriaApi student1 = new StudentForCriteriaApi("2014JT50123", "John Smith", guide1);
+            StudentForCriteriaApi student2 = new StudentForCriteriaApi("2014AL50456", "Amy Gill", guide1);
+            StudentForCriteriaApi student3 = new StudentForCriteriaApi("2014AL50333", "Oscar Santamaria", guide2);
+            StudentForCriteriaApi student4 = new StudentForCriteriaApi("2014AL50222", "John Lopez");
+            guide1.addStudent(student1);
+            guide1.addStudent(student2);
+            guide2.addStudent(student3);
+            entityManager.persist(guide1);
+            entityManager.persist(guide2);
+            entityManager.persist(guide3);
+            entityManager.persist(student4);
+            entityTransaction.commit();
+        } catch (Exception ex) {
+            if (entityTransaction != null) {
+                entityTransaction.rollback();
+            }
+            ex.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    /* select guide from GuideForCriteriaApi guide */
     @Override
     public void getGuide() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -25,11 +56,11 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         try {
             entityTransaction.begin();
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Guide3> criteriaQuery = criteriaBuilder.createQuery(Guide3.class);
-            Root<Guide3> root = criteriaQuery.from(Guide3.class);
+            CriteriaQuery<GuideForCriteriaApi> criteriaQuery = criteriaBuilder.createQuery(GuideForCriteriaApi.class);
+            Root<GuideForCriteriaApi> root = criteriaQuery.from(GuideForCriteriaApi.class);
             criteriaQuery.select(root);
-            TypedQuery<Guide3> query = entityManager.createQuery(criteriaQuery);
-            List<Guide3> guides = query.getResultList();
+            TypedQuery<GuideForCriteriaApi> query = entityManager.createQuery(criteriaQuery);
+            List<GuideForCriteriaApi> guides = query.getResultList();
             guides.forEach(System.out::println);
             entityTransaction.commit();
         } catch (Exception ex) {
@@ -42,7 +73,7 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         }
     }
 
-    /* select guide.name from Guide3 guide */
+    /* select guide.name from GuideForCriteriaApi guide */
     @Override
     public void getGuideNames() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -52,8 +83,8 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
             entityTransaction.begin();
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<String> criteriaQuery = criteriaBuilder.createQuery(String.class);
-            Root<Guide3> root = criteriaQuery.from(Guide3.class);
-            Path<String> name = root.get(Guide3_.name);
+            Root<GuideForCriteriaApi> root = criteriaQuery.from(GuideForCriteriaApi.class);
+            Path<String> name = root.get(GuideForCriteriaApi_.name);
             criteriaQuery.select(name);
             TypedQuery<String> query = entityManager.createQuery(criteriaQuery);
             List<String> names = query.getResultList();
@@ -69,7 +100,7 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         }
     }
 
-    /* select guide.name, guide.salary from Guide3 guide */
+    /* select guide.name, guide.salary from GuideForCriteriaApi guide */
     @Override
     public void getMultipleGuideFields() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -79,9 +110,9 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
             entityTransaction.begin();
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<Object[]> criteriaQuery = criteriaBuilder.createQuery(Object[].class);
-            Root<Guide3> root = criteriaQuery.from(Guide3.class);
-            Path<String> name = root.get(Guide3_.name);
-            Path<Integer> salary = root.get(Guide3_.salary);
+            Root<GuideForCriteriaApi> root = criteriaQuery.from(GuideForCriteriaApi.class);
+            Path<String> name = root.get(GuideForCriteriaApi_.name);
+            Path<Integer> salary = root.get(GuideForCriteriaApi_.salary);
             /* criteriaQuery.multiselect(name, salary) is also valid, we are still using the select method */
             criteriaQuery.select(criteriaBuilder.array(name, salary));
             TypedQuery<Object[]> query = entityManager.createQuery(criteriaQuery);
@@ -98,7 +129,7 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         }
     }
 
-    /* select guide from Guide3 guide where guide.salary = 1000 */
+    /* select guide from GuideForCriteriaApi guide where guide.salary = 1000 */
     @Override
     public void filteringResults() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -107,9 +138,9 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         try {
             entityTransaction.begin();
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Guide3> criteriaQuery = criteriaBuilder.createQuery(Guide3.class);
-            Root<Guide3> root = criteriaQuery.from(Guide3.class);
-            Path<Integer> salary = root.get(Guide3_.salary);
+            CriteriaQuery<GuideForCriteriaApi> criteriaQuery = criteriaBuilder.createQuery(GuideForCriteriaApi.class);
+            Root<GuideForCriteriaApi> root = criteriaQuery.from(GuideForCriteriaApi.class);
+            Path<Integer> salary = root.get(GuideForCriteriaApi_.salary);
             /*
                 Other criteriaBuilder methods
 
@@ -119,9 +150,9 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
             */
             criteriaQuery.where(criteriaBuilder.equal(salary, 1000));
             criteriaQuery.select(root);
-            TypedQuery<Guide3> query = entityManager.createQuery(criteriaQuery);
-            List<Guide3> resultList = query.getResultList();
-            for (Guide3 guide : resultList) System.out.println(guide);
+            TypedQuery<GuideForCriteriaApi> query = entityManager.createQuery(criteriaQuery);
+            List<GuideForCriteriaApi> resultList = query.getResultList();
+            for (GuideForCriteriaApi guide : resultList) System.out.println(guide);
             entityTransaction.commit();
         } catch (Exception e) {
             if (entityTransaction != null) {
@@ -133,7 +164,7 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         }
     }
 
-    /* Dynamic Query: select guide from Guide3 guide where guide.name = :name */
+    /* Dynamic Query: select guide from GuideForCriteriaApi guide where guide.name = :name */
     @Override
     public void findGuideByName(String name) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -142,12 +173,12 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         try {
             entityTransaction.begin();
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Guide3> criteriaQuery = criteriaBuilder.createQuery(Guide3.class);
-            Root<Guide3> root = criteriaQuery.from(Guide3.class);
-            criteriaQuery.where(criteriaBuilder.equal(root.get(Guide3_.name), criteriaBuilder.parameter(String.class, "name")));
+            CriteriaQuery<GuideForCriteriaApi> criteriaQuery = criteriaBuilder.createQuery(GuideForCriteriaApi.class);
+            Root<GuideForCriteriaApi> root = criteriaQuery.from(GuideForCriteriaApi.class);
+            criteriaQuery.where(criteriaBuilder.equal(root.get(GuideForCriteriaApi_.name), criteriaBuilder.parameter(String.class, "name")));
             criteriaQuery.select(root);
-            TypedQuery<Guide3> query = entityManager.createQuery(criteriaQuery).setParameter("name", name);
-            List<Guide3> resultList = query.getResultList();
+            TypedQuery<GuideForCriteriaApi> query = entityManager.createQuery(criteriaQuery).setParameter("name", name);
+            List<GuideForCriteriaApi> resultList = query.getResultList();
             resultList.forEach(System.out::println);
             entityTransaction.commit();
         } catch (Exception e) {
@@ -160,7 +191,7 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         }
     }
 
-    /* Wildcards: select guide from Guide3 guide where guide.staffId like '2000%' */
+    /* Wildcards: select guide from GuideForCriteriaApi guide where guide.staffId like '2000%' */
     @Override
     public void findGuideByStaffId() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -169,14 +200,14 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         try {
             entityTransaction.begin();
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Guide3> criteriaQuery = criteriaBuilder.createQuery(Guide3.class);
-            Root<Guide3> root = criteriaQuery.from(Guide3.class);
-            Path<String> staffId = root.get(Guide3_.staffId);
+            CriteriaQuery<GuideForCriteriaApi> criteriaQuery = criteriaBuilder.createQuery(GuideForCriteriaApi.class);
+            Root<GuideForCriteriaApi> root = criteriaQuery.from(GuideForCriteriaApi.class);
+            Path<String> staffId = root.get(GuideForCriteriaApi_.staffId);
             criteriaQuery.where(criteriaBuilder.like(staffId, "2000%"));
             criteriaQuery.select(root);
-            TypedQuery<Guide3> query = entityManager.createQuery(criteriaQuery);
-            List<Guide3> resultList = query.getResultList();
-            for (Guide3 guide : resultList) System.out.println(guide);
+            TypedQuery<GuideForCriteriaApi> query = entityManager.createQuery(criteriaQuery);
+            List<GuideForCriteriaApi> resultList = query.getResultList();
+            for (GuideForCriteriaApi guide : resultList) System.out.println(guide);
             entityTransaction.commit();
         } catch (Exception e) {
             if (entityTransaction != null) {
@@ -188,7 +219,7 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         }
     }
 
-    /* Aggregate function: select count(guide) from Guide3 guide */
+    /* Aggregate function: select count(guide) from GuideForCriteriaApi guide */
     @Override
     public void countGuides() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -198,7 +229,7 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
             entityTransaction.begin();
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
-            Root<Guide3> root = criteriaQuery.from(Guide3.class);
+            Root<GuideForCriteriaApi> root = criteriaQuery.from(GuideForCriteriaApi.class);
             criteriaQuery.select(criteriaBuilder.count(root));
             TypedQuery<Long> query = entityManager.createQuery(criteriaQuery);
             Long numberOfGuides = query.getSingleResult();
@@ -214,7 +245,7 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         }
     }
 
-    /* Aggregate function: select max(guide.salary) from Guide3 guide */
+    /* Aggregate function: select max(guide.salary) from GuideForCriteriaApi guide */
     @Override
     public void getGuideMaxSalary() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -224,8 +255,8 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
             entityTransaction.begin();
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<Integer> criteriaQuery = criteriaBuilder.createQuery(Integer.class);
-            Root<Guide3> root = criteriaQuery.from(Guide3.class);
-            Path<Integer> salary = root.get(Guide3_.salary);
+            Root<GuideForCriteriaApi> root = criteriaQuery.from(GuideForCriteriaApi.class);
+            Path<Integer> salary = root.get(GuideForCriteriaApi_.salary);
             criteriaQuery.select(criteriaBuilder.max(salary));
             TypedQuery<Integer> query = entityManager.createQuery(criteriaQuery);
             Integer maxSalary = query.getSingleResult();
@@ -249,8 +280,8 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
             entityTransaction.begin();
-            TypedQuery<Guide3> query = entityManager.createNamedQuery(FIND_GUIDE_BY_NAME, Guide3.class).setParameter("name", name);
-            List<Guide3> guides = query.getResultList();
+            TypedQuery<GuideForCriteriaApi> query = entityManager.createNamedQuery(GET_GUIDE_BY_NAME, GuideForCriteriaApi.class).setParameter("name", name);
+            List<GuideForCriteriaApi> guides = query.getResultList();
             guides.forEach(System.out::println);
             entityTransaction.commit();
         } catch (Exception e) {
@@ -271,8 +302,8 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
             entityTransaction.begin();
-            TypedQuery<Guide3> query = entityManager.createNamedQuery("Guide.findByName", Guide3.class).setParameter("name", name);
-            List<Guide3> guides = query.getResultList();
+            TypedQuery<GuideForCriteriaApi> query = entityManager.createNamedQuery("Guide.findByName", GuideForCriteriaApi.class).setParameter("name", name);
+            List<GuideForCriteriaApi> guides = query.getResultList();
             guides.forEach(System.out::println);
             entityTransaction.commit();
         } catch (Exception e) {
@@ -293,8 +324,8 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
             entityTransaction.begin();
-            TypedQuery<Guide3> query = entityManager.createNamedQuery("Guide.findAll", Guide3.class);
-            List<Guide3> guides = query.getResultList();
+            TypedQuery<GuideForCriteriaApi> query = entityManager.createNamedQuery("Guide.findAll", GuideForCriteriaApi.class);
+            List<GuideForCriteriaApi> guides = query.getResultList();
             guides.forEach(System.out::println);
             entityTransaction.commit();
         } catch (Exception e) {
@@ -315,8 +346,8 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
             entityTransaction.begin();
-            TypedQuery<Guide3> query = entityManager.createNamedQuery("Guide.findById", Guide3.class).setParameter("id", id);
-            Guide3 guide = query.getSingleResult();
+            TypedQuery<GuideForCriteriaApi> query = entityManager.createNamedQuery("Guide.findById", GuideForCriteriaApi.class).setParameter("id", id);
+            GuideForCriteriaApi guide = query.getSingleResult();
             System.out.println(guide);
             entityTransaction.commit();
         } catch (Exception e) {
@@ -337,8 +368,8 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
             entityTransaction.begin();
-            Query query = entityManager.createNativeQuery(LIST_GUIDES_NATIVE_QUERY, Guide3.class);
-            List<Guide3> guides = query.getResultList();
+            Query query = entityManager.createNativeQuery(LIST_GUIDES_NATIVE_QUERY2, GuideForCriteriaApi.class);
+            List<GuideForCriteriaApi> guides = query.getResultList();
             guides.forEach(System.out::println);
             entityTransaction.commit();
         } catch (Exception e) {
@@ -351,7 +382,7 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         }
     }
 
-    /* select student from Student3 student join student.guide guide */
+    /* select student from StudentForCriteriaApi student join student.guide guide */
     /*
         select
             student3x0_.id as id1_26_,
@@ -400,15 +431,15 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         try {
             entityTransaction.begin();
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Student3> criteriaQuery = criteriaBuilder.createQuery(Student3.class);
-            Root<Student3> root = criteriaQuery.from(Student3.class);
+            CriteriaQuery<StudentForCriteriaApi> criteriaQuery = criteriaBuilder.createQuery(StudentForCriteriaApi.class);
+            Root<StudentForCriteriaApi> root = criteriaQuery.from(StudentForCriteriaApi.class);
 
             /* Student.guide is a @ManyToOne */
-            Join<Student3, Guide3> guide = root.join(Student3_.guide);
+            Join<StudentForCriteriaApi, GuideForCriteriaApi> guide = root.join(StudentForCriteriaApi_.guide);
             criteriaQuery.select(root);
 
-            TypedQuery<Student3> query = entityManager.createQuery(criteriaQuery);
-            List<Student3> students = query.getResultList();
+            TypedQuery<StudentForCriteriaApi> query = entityManager.createQuery(criteriaQuery);
+            List<StudentForCriteriaApi> students = query.getResultList();
             students.forEach(System.out::println);
 
             entityTransaction.commit();
@@ -447,15 +478,15 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         try {
             entityTransaction.begin();
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Guide3> criteriaQuery = criteriaBuilder.createQuery(Guide3.class);
-            Root<Guide3> root = criteriaQuery.from(Guide3.class);
+            CriteriaQuery<GuideForCriteriaApi> criteriaQuery = criteriaBuilder.createQuery(GuideForCriteriaApi.class);
+            Root<GuideForCriteriaApi> root = criteriaQuery.from(GuideForCriteriaApi.class);
 
             /* Guide.students is a @OneToMany */
-            Join<Guide3, Student3> students = root.join(Guide3_.students);
+            Join<GuideForCriteriaApi, StudentForCriteriaApi> students = root.join(GuideForCriteriaApi_.students);
             criteriaQuery.select(root);
 
-            TypedQuery<Guide3> query = entityManager.createQuery(criteriaQuery);
-            List<Guide3> guides = query.getResultList();
+            TypedQuery<GuideForCriteriaApi> query = entityManager.createQuery(criteriaQuery);
+            List<GuideForCriteriaApi> guides = query.getResultList();
             guides.forEach(System.out::println);
 
             entityTransaction.commit();
@@ -520,15 +551,15 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         try {
             entityTransaction.begin();
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Student3> criteriaQuery = criteriaBuilder.createQuery(Student3.class);
-            Root<Student3> root = criteriaQuery.from(Student3.class);
+            CriteriaQuery<StudentForCriteriaApi> criteriaQuery = criteriaBuilder.createQuery(StudentForCriteriaApi.class);
+            Root<StudentForCriteriaApi> root = criteriaQuery.from(StudentForCriteriaApi.class);
 
             /* Student.guide is a @ManyToOne */
-            Join<Student3, Guide3> guide = root.join(Student3_.guide, JoinType.LEFT);
+            Join<StudentForCriteriaApi, GuideForCriteriaApi> guide = root.join(StudentForCriteriaApi_.guide, JoinType.LEFT);
             criteriaQuery.select(root);
 
-            TypedQuery<Student3> query = entityManager.createQuery(criteriaQuery);
-            List<Student3> students = query.getResultList();
+            TypedQuery<StudentForCriteriaApi> query = entityManager.createQuery(criteriaQuery);
+            List<StudentForCriteriaApi> students = query.getResultList();
             students.forEach(System.out::println);
 
             entityTransaction.commit();
@@ -573,15 +604,15 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         try {
             entityTransaction.begin();
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Guide3> criteriaQuery = criteriaBuilder.createQuery(Guide3.class);
-            Root<Guide3> root = criteriaQuery.from(Guide3.class);
+            CriteriaQuery<GuideForCriteriaApi> criteriaQuery = criteriaBuilder.createQuery(GuideForCriteriaApi.class);
+            Root<GuideForCriteriaApi> root = criteriaQuery.from(GuideForCriteriaApi.class);
 
             /* Guide.students is a @OneToMany */
-            Fetch<Guide3, Student3> students = root.fetch(Guide3_.students);
+            Fetch<GuideForCriteriaApi, StudentForCriteriaApi> students = root.fetch(GuideForCriteriaApi_.students);
             criteriaQuery.select(root);
 
-            TypedQuery<Guide3> query = entityManager.createQuery(criteriaQuery);
-            List<Guide3> guides = query.getResultList();
+            TypedQuery<GuideForCriteriaApi> query = entityManager.createQuery(criteriaQuery);
+            List<GuideForCriteriaApi> guides = query.getResultList();
             guides.forEach(System.out::println);
 
             entityTransaction.commit();
@@ -627,15 +658,15 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         try {
             entityTransaction.begin();
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Guide3> criteriaQuery = criteriaBuilder.createQuery(Guide3.class);
-            Root<Guide3> root = criteriaQuery.from(Guide3.class);
+            CriteriaQuery<GuideForCriteriaApi> criteriaQuery = criteriaBuilder.createQuery(GuideForCriteriaApi.class);
+            Root<GuideForCriteriaApi> root = criteriaQuery.from(GuideForCriteriaApi.class);
 
             /* Guide.students is a @OneToMany */
-            Fetch<Guide3, Student3> students = root.fetch(Guide3_.students, JoinType.LEFT);
+            Fetch<GuideForCriteriaApi, StudentForCriteriaApi> students = root.fetch(GuideForCriteriaApi_.students, JoinType.LEFT);
             criteriaQuery.select(root);
 
-            TypedQuery<Guide3> query = entityManager.createQuery(criteriaQuery);
-            List<Guide3> guides = query.getResultList();
+            TypedQuery<GuideForCriteriaApi> query = entityManager.createQuery(criteriaQuery);
+            List<GuideForCriteriaApi> guides = query.getResultList();
             guides.forEach(System.out::println);
 
             entityTransaction.commit();
@@ -680,15 +711,15 @@ public class CriteriaApiServiceImpl implements CriteriaApiService {
         try {
             entityTransaction.begin();
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Guide3> criteriaQuery = criteriaBuilder.createQuery(Guide3.class).distinct(true);
-            Root<Guide3> root = criteriaQuery.from(Guide3.class);
+            CriteriaQuery<GuideForCriteriaApi> criteriaQuery = criteriaBuilder.createQuery(GuideForCriteriaApi.class).distinct(true);
+            Root<GuideForCriteriaApi> root = criteriaQuery.from(GuideForCriteriaApi.class);
 
             /* Guide.students is a @OneToMany */
-            Fetch<Guide3, Student3> students = root.fetch(Guide3_.students, JoinType.LEFT);
+            Fetch<GuideForCriteriaApi, StudentForCriteriaApi> students = root.fetch(GuideForCriteriaApi_.students, JoinType.LEFT);
             criteriaQuery.select(root);
 
-            TypedQuery<Guide3> query = entityManager.createQuery(criteriaQuery);
-            List<Guide3> guides = query.getResultList();
+            TypedQuery<GuideForCriteriaApi> query = entityManager.createQuery(criteriaQuery);
+            List<GuideForCriteriaApi> guides = query.getResultList();
             guides.forEach(System.out::println);
 
             entityTransaction.commit();

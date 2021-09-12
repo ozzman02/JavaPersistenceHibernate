@@ -12,7 +12,11 @@ public class Constants {
 
     public static final String LIST_GUIDES_NATIVE_QUERY = "select * from guide3";
 
+    public static final String LIST_GUIDES_NATIVE_QUERY2 = "select * from GuideForCriteriaApi";
+
     public static final String FIND_GUIDE_BY_NAME = "findGuideByName";
+
+    public static final String GET_GUIDE_BY_NAME = "getGuideByName";
 
     public static final String COUNT_GUIDES_QUERY = "select count(guide) from Guide3 guide";
 
