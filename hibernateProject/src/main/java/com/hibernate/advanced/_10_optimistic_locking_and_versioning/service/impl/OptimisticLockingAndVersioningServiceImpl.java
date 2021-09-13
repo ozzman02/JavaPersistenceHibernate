@@ -123,9 +123,9 @@ public class OptimisticLockingAndVersioningServiceImpl implements OptimisticLock
 
     /*
         User 1 starts the update but in the middle of setting the new salary user2 tries to perform an update on the salary of the same guide.
-        With Optimistic Locking "last commit does not win" therefore there are no lost updates.
-        We are doing this to tell user1 that someone else performed an update already. Without this, update issued by user1 will be executed but
-        the result in the database will not be the expected since updated issued by user2 was executed as well.
+        We are using the versioning strategy (optimistic locking) to prevent lost updates. In this case last commit does not win.
+        Update of user2 is executed changing the version from 0 to 1. By that point, user1 is trying to update an older version and that's
+        the reason for the exception.
     */
     private void user1Interaction() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -134,8 +134,8 @@ public class OptimisticLockingAndVersioningServiceImpl implements OptimisticLock
         GuideForOptimisticLocking guide = entityManager1.find(GuideForOptimisticLocking.class, 2L);
         entityManager1.getTransaction().commit();
         entityManager1.close();
-        guide.setSalary(3000);
         user2Interaction();
+        guide.setSalary(3000);
         EntityManager entityManager2 = entityManagerFactory.createEntityManager();
         EntityTransaction txn2 = entityManager2.getTransaction();
         try {
