@@ -49,11 +49,39 @@ public class OptimisticLockingAndVersioningServiceImpl implements OptimisticLock
     }
 
     /*
-        We are simulating two concurrent users trying to update the salary of guide with id 2 at the same time.
+        User 1 starts the update but in the middle of setting the new salary user2 tries to perform an update on the salary of the same guide.
+        We are using the versioning strategy (optimistic locking) to prevent lost updates. In this case last commit does not win.
+        Update of user2 is executed changing the version from 0 to 1. By that point, user1 is trying to update an older version and that's
+        the reason for the exception.
     */
     @Override
     public void updateGuideSalaryConcurrently() {
-        user1Interaction();
+        /* User1 interaction */
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManager entityManager1 = entityManagerFactory.createEntityManager();
+        entityManager1.getTransaction().begin();
+        GuideForOptimisticLocking guide = entityManager1.find(GuideForOptimisticLocking.class, 2L);
+        entityManager1.getTransaction().commit();
+        entityManager1.close();
+
+        /* User2 interaction */
+        user2Interaction();
+
+        /* User1 interaction continues */
+        guide.setSalary(3000);
+        EntityManager entityManager2 = entityManagerFactory.createEntityManager();
+        EntityTransaction txn2 = entityManager2.getTransaction();
+        try {
+            txn2.begin();
+            GuideForOptimisticLocking mergedGuide = entityManager2.merge(guide);
+            txn2.commit();
+        } catch (OptimisticLockException ole) {
+            txn2.rollback();
+            System.err.println("The guide was updated by some other user while you were doing interesting things.");
+            ole.printStackTrace();
+        } finally {
+            entityManager2.close();
+        }
     }
 
     /*
@@ -119,36 +147,6 @@ public class OptimisticLockingAndVersioningServiceImpl implements OptimisticLock
 
         entityManager.getTransaction().commit();
         entityManager.close();
-    }
-
-    /*
-        User 1 starts the update but in the middle of setting the new salary user2 tries to perform an update on the salary of the same guide.
-        We are using the versioning strategy (optimistic locking) to prevent lost updates. In this case last commit does not win.
-        Update of user2 is executed changing the version from 0 to 1. By that point, user1 is trying to update an older version and that's
-        the reason for the exception.
-    */
-    private void user1Interaction() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        EntityManager entityManager1 = entityManagerFactory.createEntityManager();
-        entityManager1.getTransaction().begin();
-        GuideForOptimisticLocking guide = entityManager1.find(GuideForOptimisticLocking.class, 2L);
-        entityManager1.getTransaction().commit();
-        entityManager1.close();
-        user2Interaction();
-        guide.setSalary(3000);
-        EntityManager entityManager2 = entityManagerFactory.createEntityManager();
-        EntityTransaction txn2 = entityManager2.getTransaction();
-        try {
-            txn2.begin();
-            GuideForOptimisticLocking mergedGuide = entityManager2.merge(guide);
-            txn2.commit();
-        } catch (OptimisticLockException ole) {
-            txn2.rollback();
-            System.err.println("The guide was updated by some other user while you were doing interesting things.");
-            ole.printStackTrace();
-        } finally {
-            entityManager2.close();
-        }
     }
 
     private void user2Interaction() {
