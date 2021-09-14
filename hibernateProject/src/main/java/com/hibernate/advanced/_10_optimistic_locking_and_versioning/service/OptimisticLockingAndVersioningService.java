@@ -5,4 +5,5 @@ public interface OptimisticLockingAndVersioningService {
     void updateGuideSalaryConcurrently();
     void pessimisticReadLockExample();
     void pessimisticWriteLockExample();
+    void isolationRuleExample();
 }

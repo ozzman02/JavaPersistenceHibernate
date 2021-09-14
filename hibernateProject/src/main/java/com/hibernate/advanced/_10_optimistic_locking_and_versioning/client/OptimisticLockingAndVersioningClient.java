@@ -10,5 +10,6 @@ public class OptimisticLockingAndVersioningClient {
         optimisticLockingAndVersioningService.updateGuideSalaryConcurrently();
         optimisticLockingAndVersioningService.pessimisticReadLockExample();
         optimisticLockingAndVersioningService.pessimisticWriteLockExample();
+        optimisticLockingAndVersioningService.isolationRuleExample();
     }
 }

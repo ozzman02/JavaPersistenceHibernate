@@ -149,6 +149,31 @@ public class OptimisticLockingAndVersioningServiceImpl implements OptimisticLock
         entityManager.close();
     }
 
+    /* MySQL uses Repeatable_Read as default Isolation Level */
+    @Override
+    public void isolationRuleExample() {
+        String getGuideNameAndSalaryQuery = "select guide.name, guide.salary from GuideForOptimisticLocking as guide";
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+        List<Object[]> resultList = entityManager.createQuery(getGuideNameAndSalaryQuery).getResultList();
+        for (Object[] objects : resultList) {
+            System.out.println(Arrays.toString(objects));
+        }
+
+        /* Other user is updating a salary */
+        user3Interaction();
+
+        long sumOfSalaries = (long) entityManager.createQuery("select sum(guide.salary) from GuideForOptimisticLocking as guide").getSingleResult();
+        System.out.println("[sumOfSalaries: " + sumOfSalaries + "]");
+
+        /* The result of the update performed by the other user will be visible for other only when this transaction is committed */
+        entityTransaction.commit();
+
+        entityManager.close();
+    }
+
     private void user2Interaction() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
