@@ -53,6 +53,12 @@ public class Constants {
 
     public static final String FIND_GUIDE_BY_NAME_QUERY = "select guide from GuideForCachingAndObjectIdentity guide where guide.name = :name";
 
+    public static final String GET_GUIDE_NAME_AND_SALARY_QUERY = "select guide.name, guide.salary from GuideForOptimisticLocking as guide";
+
+    public static final String GET_TOTAL_GUIDE_SALARIES_QUERY = "select sum(guide.salary) from GuideForOptimisticLocking as guide";
+
+    public static final String UPDATE_ALL_GUIDE_SALARIES_QUERY = "update GuideForOptimisticLocking as guide set guide.salary = guide.salary * 4";
+
     public static final String GUIDE_ID = "id";
 
     public static final String GUIDE_NAME = "name";

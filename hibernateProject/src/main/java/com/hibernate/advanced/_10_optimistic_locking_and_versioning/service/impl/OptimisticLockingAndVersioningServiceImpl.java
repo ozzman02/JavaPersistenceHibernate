@@ -10,7 +10,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.hibernate.advanced.constants.Constants.PERSISTENCE_UNIT_NAME;
+import static com.hibernate.advanced.constants.Constants.*;
 
 public class OptimisticLockingAndVersioningServiceImpl implements OptimisticLockingAndVersioningService {
 
@@ -96,7 +96,7 @@ public class OptimisticLockingAndVersioningServiceImpl implements OptimisticLock
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
             entityTransaction.begin();
-            List<Object[]> resultList = entityManager.createQuery("select guide.name, guide.salary from GuideForOptimisticLocking as guide")
+            List<Object[]> resultList = entityManager.createQuery(GET_GUIDE_NAME_AND_SALARY_QUERY)
                     .setLockMode(LockModeType.PESSIMISTIC_READ)
                     .getResultList();
             for (Object[] objects : resultList) {
@@ -110,7 +110,7 @@ public class OptimisticLockingAndVersioningServiceImpl implements OptimisticLock
             */
             //user3Interaction();
 
-            long sumOfSalaries = (long) entityManager.createQuery("select sum(guide.salary) from GuideForOptimisticLocking as guide").getSingleResult();
+            long sumOfSalaries = (long) entityManager.createQuery(GET_TOTAL_GUIDE_SALARIES_QUERY).getSingleResult();
             System.out.println("[sumOfSalaries: " + sumOfSalaries + "]");
             entityManager.getTransaction().commit();
 
@@ -133,17 +133,17 @@ public class OptimisticLockingAndVersioningServiceImpl implements OptimisticLock
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
-        List<Object[]> resultList = entityManager.createQuery("select guide.name, guide.salary from GuideForOptimisticLocking as guide")
+        List<Object[]> resultList = entityManager.createQuery(GET_GUIDE_NAME_AND_SALARY_QUERY)
                 .setLockMode(LockModeType.PESSIMISTIC_WRITE)
                 .getResultList();
         for (Object[] objects : resultList) {
             System.out.println(Arrays.toString(objects));
         }
-        long sumOfSalaries = (long) entityManager.createQuery("select sum(guide.salary) from GuideForOptimisticLocking as guide").getSingleResult();
+        long sumOfSalaries = (long) entityManager.createQuery(GET_TOTAL_GUIDE_SALARIES_QUERY).getSingleResult();
         System.out.println("[sumOfSalaries: " + sumOfSalaries + "]");
 
         /* The lock is released here. Here we are raising the guide salaries 4 times */
-        entityManager.createQuery("update GuideForOptimisticLocking as guide set guide.salary = guide.salary * 4").executeUpdate();
+        entityManager.createQuery(UPDATE_ALL_GUIDE_SALARIES_QUERY).executeUpdate();
 
         entityManager.getTransaction().commit();
         entityManager.close();
@@ -152,12 +152,11 @@ public class OptimisticLockingAndVersioningServiceImpl implements OptimisticLock
     /* MySQL uses Repeatable_Read as default Isolation Level */
     @Override
     public void isolationRuleExample() {
-        String getGuideNameAndSalaryQuery = "select guide.name, guide.salary from GuideForOptimisticLocking as guide";
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
-        List<Object[]> resultList = entityManager.createQuery(getGuideNameAndSalaryQuery).getResultList();
+        List<Object[]> resultList = entityManager.createQuery(GET_GUIDE_NAME_AND_SALARY_QUERY).getResultList();
         for (Object[] objects : resultList) {
             System.out.println(Arrays.toString(objects));
         }
@@ -165,7 +164,7 @@ public class OptimisticLockingAndVersioningServiceImpl implements OptimisticLock
         /* Other user is updating a salary */
         user3Interaction();
 
-        long sumOfSalaries = (long) entityManager.createQuery("select sum(guide.salary) from GuideForOptimisticLocking as guide").getSingleResult();
+        long sumOfSalaries = (long) entityManager.createQuery(GET_TOTAL_GUIDE_SALARIES_QUERY).getSingleResult();
         System.out.println("[sumOfSalaries: " + sumOfSalaries + "]");
 
         /* The result of the update performed by the other user will be visible for other only when this transaction is committed */
