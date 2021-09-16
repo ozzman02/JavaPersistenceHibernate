@@ -49,4 +49,12 @@ public class Constants {
 
     public static final String TABLE_PER_CLASS_STRATEGY_DOGS_POLYMORPHIC_QUERY = "select dog from TablePerClassDog dog";
 
+    public static final String FIND_GUIDE_BY_ID_QUERY = "select guide from GuideForCachingAndObjectIdentity guide where guide.id = :id";
+
+    public static final String FIND_GUIDE_BY_NAME_QUERY = "select guide from GuideForCachingAndObjectIdentity guide where guide.name = :name";
+
+    public static final String GUIDE_ID = "id";
+
+    public static final String GUIDE_NAME = "name";
+
 }
