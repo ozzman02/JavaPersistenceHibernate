@@ -1,6 +1,6 @@
 package com.hibernate.advanced._01_hibernate_jpa_provider.service.impl;
 
-import static com.hibernate.advanced.constants.Constants.PERSISTENCE_UNIT_NAME;
+import static com.hibernate.advanced._13_constants.Constants.PERSISTENCE_UNIT_NAME;
 
 import com.hibernate.advanced._01_hibernate_jpa_provider.entity.Message;
 import com.hibernate.advanced._01_hibernate_jpa_provider.service.HibernateAsJpaProviderService;

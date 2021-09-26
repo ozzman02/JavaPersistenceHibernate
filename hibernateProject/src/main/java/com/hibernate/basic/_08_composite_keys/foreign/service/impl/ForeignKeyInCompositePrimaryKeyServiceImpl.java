@@ -4,7 +4,7 @@ import com.hibernate.basic._08_composite_keys.foreign.entity.Department;
 import com.hibernate.basic._08_composite_keys.foreign.entity.User;
 import com.hibernate.basic._08_composite_keys.foreign.entity.UserId;
 import com.hibernate.basic._08_composite_keys.foreign.service.ForeignKeyInCompositePrimaryKeyService;
-import com.hibernate.basic.util.HibernateUtil;
+import com.hibernate.basic._10_util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

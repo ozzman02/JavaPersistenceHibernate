@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static com.hibernate.advanced.constants.Constants.*;
+import static com.hibernate.advanced._13_constants.Constants.*;
 
 public class InheritanceAndPolymorphicQueriesServiceImpl implements InheritanceAndPolymorphicQueriesService {
 

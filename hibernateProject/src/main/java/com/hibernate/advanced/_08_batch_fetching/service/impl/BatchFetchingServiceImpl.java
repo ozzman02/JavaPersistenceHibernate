@@ -1,11 +1,8 @@
 package com.hibernate.advanced._08_batch_fetching.service.impl;
 
-import com.hibernate.advanced._07_selects_problem.entity.GuideObject;
-import com.hibernate.advanced._07_selects_problem.entity.StudentObject;
 import com.hibernate.advanced._08_batch_fetching.entity.GuideObjectBatch;
 import com.hibernate.advanced._08_batch_fetching.entity.StudentObjectBatch;
 import com.hibernate.advanced._08_batch_fetching.service.BatchFetchingService;
-import com.hibernate.basic._02_one_to_many.entity.Student;
 
 import javax.persistence.*;
 
@@ -13,7 +10,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.hibernate.advanced.constants.Constants.PERSISTENCE_UNIT_NAME;
+import static com.hibernate.advanced._13_constants.Constants.PERSISTENCE_UNIT_NAME;
 
 public class BatchFetchingServiceImpl implements BatchFetchingService {
 

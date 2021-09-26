@@ -3,8 +3,8 @@ package com.hibernate.basic._05_many_to_many.service.impl;
 import com.hibernate.basic._05_many_to_many.entity.Actor;
 import com.hibernate.basic._05_many_to_many.entity.Movie;
 import com.hibernate.basic._05_many_to_many.service.ManyToManyService;
-import com.hibernate.basic.util.DatabaseUtil;
-import com.hibernate.basic.util.HibernateUtil;
+import com.hibernate.basic._10_util.DatabaseUtil;
+import com.hibernate.basic._10_util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

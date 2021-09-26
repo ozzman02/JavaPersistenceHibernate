@@ -8,21 +8,21 @@ import javax.persistence.*;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.hibernate.advanced.constants.Constants.COUNT_GUIDES_QUERY;
-import static com.hibernate.advanced.constants.Constants.FIND_GUIDE_BY_NAME;
-import static com.hibernate.advanced.constants.Constants.GET_GUIDE_BY_SALARY;
-import static com.hibernate.advanced.constants.Constants.GET_MAX_SALARY_QUERY;
-import static com.hibernate.advanced.constants.Constants.GUIDES_WITH_AT_LEAST_ONE_STUDENT_QUERY;
-import static com.hibernate.advanced.constants.Constants.GUIDES_WITH_NO_STUDENTS_QUERY;
-import static com.hibernate.advanced.constants.Constants.INNER_JOIN_QUERY;
-import static com.hibernate.advanced.constants.Constants.JOIN_FETCH_QUERY;
-import static com.hibernate.advanced.constants.Constants.LEFT_JOIN_QUERY;
-import static com.hibernate.advanced.constants.Constants.LIST_GUIDES;
-import static com.hibernate.advanced.constants.Constants.LIST_GUIDES_NATIVE_QUERY;
-import static com.hibernate.advanced.constants.Constants.LIST_GUIDES_REPORT;
-import static com.hibernate.advanced.constants.Constants.PERSISTENCE_UNIT_NAME;
-import static com.hibernate.advanced.constants.Constants.RIGHT_JOIN_QUERY;
-import static com.hibernate.advanced.constants.Constants.STUDENTS_WITH_NO_GUIDE_QUERY;
+import static com.hibernate.advanced._13_constants.Constants.COUNT_GUIDES_QUERY;
+import static com.hibernate.advanced._13_constants.Constants.FIND_GUIDE_BY_NAME;
+import static com.hibernate.advanced._13_constants.Constants.GET_GUIDE_BY_SALARY;
+import static com.hibernate.advanced._13_constants.Constants.GET_MAX_SALARY_QUERY;
+import static com.hibernate.advanced._13_constants.Constants.GUIDES_WITH_AT_LEAST_ONE_STUDENT_QUERY;
+import static com.hibernate.advanced._13_constants.Constants.GUIDES_WITH_NO_STUDENTS_QUERY;
+import static com.hibernate.advanced._13_constants.Constants.INNER_JOIN_QUERY;
+import static com.hibernate.advanced._13_constants.Constants.JOIN_FETCH_QUERY;
+import static com.hibernate.advanced._13_constants.Constants.LEFT_JOIN_QUERY;
+import static com.hibernate.advanced._13_constants.Constants.LIST_GUIDES;
+import static com.hibernate.advanced._13_constants.Constants.LIST_GUIDES_NATIVE_QUERY;
+import static com.hibernate.advanced._13_constants.Constants.LIST_GUIDES_REPORT;
+import static com.hibernate.advanced._13_constants.Constants.PERSISTENCE_UNIT_NAME;
+import static com.hibernate.advanced._13_constants.Constants.RIGHT_JOIN_QUERY;
+import static com.hibernate.advanced._13_constants.Constants.STUDENTS_WITH_NO_GUIDE_QUERY;
 
 public class JpqlServiceImpl implements JpqlService {
 

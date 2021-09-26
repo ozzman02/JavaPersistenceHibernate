@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import static com.hibernate.advanced.constants.Constants.PERSISTENCE_UNIT_NAME;
+import static com.hibernate.advanced._13_constants.Constants.PERSISTENCE_UNIT_NAME;
 
 public class MergeDetachedObjectsServiceImpl implements MergeDetachedObjectsService {
 

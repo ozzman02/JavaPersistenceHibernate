@@ -3,7 +3,7 @@ package com.hibernate.basic._06_mapping_enums.service.impl;
 import com.hibernate.basic._06_mapping_enums.entity.Employee;
 import com.hibernate.basic._06_mapping_enums.entity.EmployeeStatus;
 import com.hibernate.basic._06_mapping_enums.service.MappingEnumsService;
-import com.hibernate.basic.util.HibernateUtil;
+import com.hibernate.basic._10_util.HibernateUtil;
 import org.hibernate.Session;
 
 public class MappingEnumsServiceImpl implements MappingEnumsService {

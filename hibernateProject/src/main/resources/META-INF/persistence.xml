@@ -24,6 +24,14 @@
             <!-- Pretty print the SQL in the log file and console -->
             <property name="hibernate.format_sql" value="true"/>
 
+            <!--
+                ENABLE_SELECTIVE enables the cache on a class basis with @Cacheable annotation
+                ALL enables the cache for all entity classes.
+                DISABLE_SELECTIVE all entities are cached except the ones that are annotated with @Cacheable(false)
+            -->
+            <property name="javax.persistence.sharedCache.mode" value="ENABLE_SELECTIVE" />
+            <property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.internal.EhcacheRegionFactory" />
+
         </properties>
 
     </persistence-unit>

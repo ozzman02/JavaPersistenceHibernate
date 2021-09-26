@@ -1,4 +1,4 @@
-package com.hibernate.advanced.constants;
+package com.hibernate.advanced._13_constants;
 
 public class Constants {
 

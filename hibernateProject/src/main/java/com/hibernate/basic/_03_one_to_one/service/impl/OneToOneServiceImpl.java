@@ -3,8 +3,8 @@ package com.hibernate.basic._03_one_to_one.service.impl;
 import com.hibernate.basic._03_one_to_one.entity.Customer;
 import com.hibernate.basic._03_one_to_one.entity.Passport;
 import com.hibernate.basic._03_one_to_one.service.OneToOneService;
-import com.hibernate.basic.util.DatabaseUtil;
-import com.hibernate.basic.util.HibernateUtil;
+import com.hibernate.basic._10_util.DatabaseUtil;
+import com.hibernate.basic._10_util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

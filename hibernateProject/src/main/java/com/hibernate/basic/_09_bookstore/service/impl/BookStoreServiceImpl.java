@@ -5,7 +5,7 @@ import com.hibernate.basic._09_bookstore.entity.Chapter;
 import com.hibernate.basic._09_bookstore.entity.ChapterId;
 import com.hibernate.basic._09_bookstore.entity.Publisher;
 import com.hibernate.basic._09_bookstore.service.BookStoreService;
-import com.hibernate.basic.util.HibernateUtil;
+import com.hibernate.basic._10_util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

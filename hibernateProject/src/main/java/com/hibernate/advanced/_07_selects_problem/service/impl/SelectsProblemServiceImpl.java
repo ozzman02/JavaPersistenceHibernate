@@ -10,7 +10,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.hibernate.advanced.constants.Constants.PERSISTENCE_UNIT_NAME;
+import static com.hibernate.advanced._13_constants.Constants.PERSISTENCE_UNIT_NAME;
 
 public class SelectsProblemServiceImpl implements SelectsProblemService {
 

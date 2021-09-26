@@ -4,7 +4,7 @@ import com.hibernate.basic._08_composite_keys.primary.entity.Child;
 import com.hibernate.basic._08_composite_keys.primary.entity.Parent;
 import com.hibernate.basic._08_composite_keys.primary.entity.ParentPrimaryKey;
 import com.hibernate.basic._08_composite_keys.primary.service.CompositeKeysService;
-import com.hibernate.basic.util.HibernateUtil;
+import com.hibernate.basic._10_util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

@@ -11,7 +11,7 @@ import javax.persistence.criteria.*;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.hibernate.advanced.constants.Constants.*;
+import static com.hibernate.advanced._13_constants.Constants.*;
 
 public class CriteriaApiServiceImpl implements CriteriaApiService {
 

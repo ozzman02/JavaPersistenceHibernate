@@ -3,8 +3,8 @@ package com.hibernate.basic._02_one_to_many.service.impl;
 import com.hibernate.basic._02_one_to_many.entity.Guide;
 import com.hibernate.basic._02_one_to_many.entity.Student;
 import com.hibernate.basic._02_one_to_many.service.OneToManyService;
-import com.hibernate.basic.util.DatabaseUtil;
-import com.hibernate.basic.util.HibernateUtil;
+import com.hibernate.basic._10_util.DatabaseUtil;
+import com.hibernate.basic._10_util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

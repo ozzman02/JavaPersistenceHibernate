@@ -3,7 +3,7 @@ package com.hibernate.basic._04_mapsid.service.impl;
 import com.hibernate.basic._04_mapsid.entity.Customer2;
 import com.hibernate.basic._04_mapsid.entity.Passport2;
 import com.hibernate.basic._04_mapsid.service.MapsIdService;
-import com.hibernate.basic.util.HibernateUtil;
+import com.hibernate.basic._10_util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

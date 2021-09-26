@@ -11,7 +11,7 @@ import javax.persistence.Persistence;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import static com.hibernate.advanced.constants.Constants.*;
+import static com.hibernate.advanced._13_constants.Constants.*;
 
 public class CachingAndObjectIdentityServiceImpl implements CachingAndObjectIdentityService {
 

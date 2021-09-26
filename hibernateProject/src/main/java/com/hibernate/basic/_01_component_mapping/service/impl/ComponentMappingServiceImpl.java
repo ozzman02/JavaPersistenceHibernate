@@ -3,7 +3,7 @@ package com.hibernate.basic._01_component_mapping.service.impl;
 import com.hibernate.basic._01_component_mapping.entity.Address;
 import com.hibernate.basic._01_component_mapping.entity.Person;
 import com.hibernate.basic._01_component_mapping.service.ComponentMappingService;
-import com.hibernate.basic.util.HibernateUtil;
+import com.hibernate.basic._10_util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

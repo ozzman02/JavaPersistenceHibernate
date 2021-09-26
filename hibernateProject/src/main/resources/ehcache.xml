@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="ehcache.xsd">
+
+    <!--
+        eternal means that the entries in the cache region will be kept eternally as long as we got our application running
+    -->
+    <cache name="com.hibernate.advanced._12_second_level_cache.entity.GuideForSecondLevelCache"
+           maxElementsInMemory="1000"
+           eternal="true"
+           overflowToDisk="false"
+    />
+    <cache name="com.hibernate.advanced._12_second_level_cache.entity.StudentForSecondLevelCache"
+           maxElementsInMemory="10000"
+           eternal="true"
+           overflowToDisk="false"
+    />
+    <cache name="com.hibernate.advanced._12_second_level_cache.entity.GuideForSecondLevelCache.students"
+           maxElementsInMemory="1000"
+           eternal="true"
+           overflowToDisk="false"
+    />
+
+</ehcache>

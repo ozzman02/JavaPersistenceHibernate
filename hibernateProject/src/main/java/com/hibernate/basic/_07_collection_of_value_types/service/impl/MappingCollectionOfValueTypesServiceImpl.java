@@ -4,7 +4,7 @@ import com.hibernate.basic._07_collection_of_value_types.entity.Friend;
 import com.hibernate.basic._07_collection_of_value_types.entity.FriendAddress;
 import com.hibernate.basic._07_collection_of_value_types.entity.Item;
 import com.hibernate.basic._07_collection_of_value_types.service.MappingCollectionOfValueTypesService;
-import com.hibernate.basic.util.HibernateUtil;
+import com.hibernate.basic._10_util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
