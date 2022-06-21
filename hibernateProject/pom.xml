@@ -122,7 +122,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.26</version>
+            <version>8.0.28</version>
         </dependency>
         <!-- The Simple Logging Facade for Java (SLF4J) serves as a simple facade or abstraction for various
             logging frameworks (e.g. java.util.logging, logback, log4j) allowing the end user to plug in
